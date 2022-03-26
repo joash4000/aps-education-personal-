@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Home - APS Dashboard</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <%- include('./include-admin/style.ejs') %>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <br><br><br><br><br>
+        <section class="content">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="well">
+                    <center>
+                        <div class="imgcontainer">
+                            <img src="/assets/img/aps-logo.png" height="25%" width="25%">
+                        </div>
+                    </center>
+                    <h1>Login</h1>
+                    <br>
+                    <br>
+
+                    <% if (errorMessage) { %>
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <%= errorMessage %>
+                        </div>
+                        <% } %>
+                            <form action="/admin/login/" method="POST" name="login_user_form">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label> <input class="form-control" id="email" name="email" required type="text" value="">
+
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="password">Password</label> <input class="form-control" id="password" name="password" required type="password" value="">
+
+                                </div>
+                                <div class=" col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                        <input type="checkbox" name="remember"> Remember me
+                                      </label>
+                                    </div>
+                                </div>
+                                <p><input class="btn btn-primary" class="form-control" id="submit" name="submit" type="submit" value="Login"></p>
+
+                            </form>
+                </div>
+            </div>
+        </section>
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
+
+
+
+
+    </div>
+    <!-- ./wrapper -->
+    <%- include('./include-admin/scripts.ejs') %>
+</body>
+
+</html>

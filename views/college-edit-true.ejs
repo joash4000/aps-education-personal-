@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <style type="text/css">
+        .select2-container,
+        .select2-container-active,
+        #college,
+        #name,
+        #father_name,
+        #father_occupation,
+        #date_of_birth,
+        #category,
+        #email,
+        #address,
+        #state,
+        #dist,
+        #contact_no,
+        #marital_status,
+        #height,
+        #weight,
+        #paid,
+        #tenth_university,
+        #tenth_year,
+        #tenth_subject,
+        #tenth_percentage,
+        #twelve_university,
+        #twelve_year,
+        #twelve_subject,
+        #twelve_percentage,
+        #graduation_university,
+        #graduation_year,
+        #graduation_subject,
+        #graduation_percentage,
+        #document_idcard,
+        #tenth_marksheet,
+        #twelve_marksheet,
+        #photo,
+        #pincode,
+        #qualification,
+        #family_background,
+        #tehsil,
+        #graduation_document {
+            width: 100% !important;
+        }
+        
+        .admin-form {
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            width: max-content;
+        }
+        
+        .controls div input {
+            height: 40px;
+        }
+        
+        .select2-search-choice {
+            width: 90%;
+        }
+    </style>
+    <%- include('./include-admin/style.ejs') %>
+        <style>
+            @media (min-width: 768px) {
+                .form-horizontal .control-label {
+                    padding-top: 7px;
+                    margin-bottom: 0;
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        </style>
+
+
+
+
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+        <%- include('./include-admin/header.ejs') %>
+            <!-- Content Wrapper. Contains page content color white-->
+            <div class="content-wrapper">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="/admin/college">List</a>
+                    </li>
+                    <li>
+                        <a href="/admin/college/create">Create</a>
+                    </li>
+                    <li class="active">
+                        <a href="/admin/college/edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="/admin/college/csv">Export</a>
+                    </li>
+                </ul>
+                <% if (errorMessage) { %>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+                        <form action="/admin/college/edit/true" method="POST" class="admin-form form-horizontal">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <div class="form-group">
+                                <label for="twelve_subject" class="col-md-2 control-label">College Name:<strong style="color: red">*</strong>
+        &nbsp;
+    </label>
+                                <div class="col-md-10">
+                                    <input class="form-control" id="twelve_subject" name="collegeName" type="text" value="<%= college.collegeName %>">
+                                </div>
+                            </div>
+                            <input type="hidden" name="_id" value="<%= college._id %>">
+                            <hr>
+                            <div class="form-group">
+                                <div class=" col-md-10 submit-row">
+                                    <input type="submit" class="btn btn-primary" style="width: 100%;" value="Save" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class=" col-md-10 submit-row">
+                                    <a href="/admin/college/delete/<%= college._id %>" class="btn btn-primary btn-danger" style="width: 100%;">Delete</a>
+                                </div>
+                            </div>
+                            <hr>
+                        </form>
+            </div>
+            <!-- / Content Wrapper. color white -->
+
+            <!-- Control Sidebar -->
+            <!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+                <div class="pull-right hidden-xs">
+                </div>
+            </footer>
+
+
+    </div>
+    <!-- ./wrapper -->
+
+
+
+
+    <%- include('./include-admin/scripts.ejs') %>
+        <script>
+            document.getElementById('navcollege').classList.add('active');
+        </script>
+</body>
+
+</html>

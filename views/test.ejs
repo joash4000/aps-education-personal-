@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <style type="text/css">
+        .select2-container,
+        .select2-container-active,
+        #college,
+        #name,
+        #father_name,
+        #father_occupation,
+        #date_of_birth,
+        #category,
+        #email,
+        #address,
+        #state,
+        #dist,
+        #contact_no,
+        #marital_status,
+        #height,
+        #weight,
+        #paid,
+        #tenth_university,
+        #tenth_year,
+        #tenth_subject,
+        #tenth_percentage,
+        #twelve_university,
+        #twelve_year,
+        #twelve_subject,
+        #twelve_percentage,
+        #graduation_university,
+        #graduation_year,
+        #graduation_subject,
+        #graduation_percentage,
+        #document_idcard,
+        #tenth_marksheet,
+        #twelve_marksheet,
+        #photo,
+        #pincode,
+        #qualification,
+        #family_background,
+        #tehsil,
+        #graduation_document {
+            width: 100% !important;
+        }
+        
+        .controls div input {
+            height: 40px;
+        }
+        
+        .select2-search-choice {
+            width: 90%;
+        }
+        
+        .admin-form {
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            width: max-content;
+        }
+    </style>
+    <!-- Bootstrap 3.3.6 -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet"></link>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="/static/css/AdminLTE.min.css" rel="stylesheet"></link>
+    <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+    <link href="/static/css/skins/_all-skins.min.css" rel="stylesheet"></link>
+    <!-- iCheck -->
+    <link href="/static/plugins/iCheck/flat/blue.css" rel="stylesheet"></link>
+    <!-- Morris chart -->
+    <link href="/static/plugins/morris/morris.css" rel="stylesheet"></link>
+    <!-- jvectormap -->
+    <link href="/static/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet"></link>
+    <!-- Date Picker -->
+    <link href="/static/plugins/datepicker/datepicker3.css" rel="stylesheet"></link>
+    <!-- Daterange picker -->
+    <link href="/static/plugins/daterangepicker/daterangepicker.css" rel="stylesheet"></link>
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet"></link>
+    <!-- Flask-admin admin styles -->
+    <link href="/admin/static/admin/css/bootstrap3/admin.css?v=1.1.1" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script>
+        $('select').selectpicker();
+        $('.selectpicker').selectpicker('deselectAll');
+        $('.selectpicker').selectpicker('selectAll');
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <link href="/admin/static/vendor/select2/select2.css?v=3.5.2" rel="stylesheet">
+    <link href="/admin/static/vendor/select2/select2-bootstrap3.css?v=1.4.6" rel="stylesheet">
+    <link href="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker-bs3.css?v=1.3.22" rel="stylesheet">
+
+
+
+
+
+
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+
+            <a href="/admin" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><img src= "/static/aps-logo.png" height=50 width=50 /></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>APS Group</b></span>
+            </a>
+
+
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                        <li>
+
+
+                            <!-- User Account: style can be found in dropdown.less -->
+
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user-circle" style="color: white; font-size: 1.4em;"></i>
+                                    <span class="hidden-xs">
+       
+                                        <%= nameunique %>
+       
+   </span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <i class="fa fa-user-circle" style="color: white; font-size: 7em;"></i>
+                                        <p>
+
+                                            <%= nameunique %>
+
+                                                <br>
+                                        </p>
+                                        <p>
+                                            <%= roleunique %>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <!-- /.row -->
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+
+                                        <div class="pull-right">
+                                            <a href="/admin/logout/" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+
+
+                        </li>
+                    </ul>
+
+
+                    <ul class="nav navbar-nav navbar-right">
+
+
+
+
+                    </ul>
+
+
+                </div>
+            </nav>
+        </header>
+        <!-- / TOP NAVBAR -->
+
+        <!-- LEFT MENU -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <i class="fa fa-user-circle" style="color: white; font-size: 2.5em;"></i>
+                    </div>
+                    <div class="pull-left info">
+                        <p>
+                            <%= nameunique %>
+
+                        </p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <!-- <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+            </button>
+          </span>
+                    </div>
+                </form> -->
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</li>
+
+
+
+                    <li>
+                        <a href="/admin/">Home</a>
+                    </li>
+                    <% if(roleunique === 'ADMIN') {%>
+                        <li>
+                            <a href="/admin/role/">
+
+
+                                <i class="fa fa-server"></i> Roles
+
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin/user/">
+
+
+                                <i class="fa fa-users"></i> Users
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/course/">
+
+
+                                <i class="fa fa-book"></i> Courses
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/college/">
+
+
+                                <i class="fa fa-graduation-cap"></i> College
+
+                            </a>
+                        </li>
+                        <%}%>
+                            <li>
+                                <a href="/admin/registeration/">
+
+
+                                    <i class="fa fa-book"></i> Registrations
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/survey/">
+
+
+                                    <i class="fa fa-book"></i> Survey
+
+                                </a>
+                            </li>
+
+
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content color white-->
+        <div class="content-wrapper">
+            <% if (errorMessage) { %>
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                    <%= errorMessage %>
+                </div>
+                <% } %>
+
+
+                    <form action="/admin/test/create" method="POST" class="admin-form form-horizontal">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="form-group">
+                            <label for="twelve_subject" class="col-md-2 control-label">Email:<strong style="color: red">*</strong>
+        &nbsp;
+    </label>
+                            <div class="col-md-10">
+                                <input class="form-control" id="twelve_subject" name="email" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="twelve_subject" class="col-md-2 control-label">First Name:<strong style="color: red">*</strong>
+        &nbsp;
+    </label>
+                            <div class="col-md-10">
+                                <input class="form-control" id="twelve_subject" name="firstName" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="twelve_subject" class="col-md-2 control-label">Last Name:<strong style="color: red">*</strong>
+        &nbsp;
+    </label>
+                            <div class="col-md-10">
+                                <input class="form-control" id="twelve_subject" name="lastName" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="twelve_subject" class="col-md-2 control-label">Password<strong style="color: red">*</strong>
+        &nbsp;
+    </label>
+                            <div class="col-md-10">
+                                <input class="form-control" id="twelve_subject" name="password" type="password" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="paid" class="col-md-2 control-label">Role
+        &nbsp;
+    </label>
+                            <div class="col-md-10">
+
+                                <select class="form-control" data-allow-blank="1" data-role="select2" id="paid" name="role">
+                                    <option value="admin">Admin</option>
+                                    <option value="employee">Employee</option>
+                                </select>
+
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_birth" class="col-md-2 control-label">Confirmed At:<strong style="color: red">*</strong>
+        &nbsp;
+    </label>
+                            <div class="col-md-10">
+                                <input class="form-control" data-date-format="YYYY-MM-DD" data-role="datepicker" id="date_of_birth" name="confirmedAt" type="datetime" value="<%= new Date() %>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10 submit-row">
+                                <input type="submit" class="btn btn-primary" style="width: 100%;" value="Save" />
+                            </div>
+                        </div>
+                    </form>
+        </div>
+        <!-- / Content Wrapper. color white -->
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-cog"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Stats tab content -->
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    </a>
+                    </li>
+                    </ul>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+            <div class="pull-right hidden-xs">
+            </div>
+        </footer>
+
+
+    </div>
+    <!-- ./wrapper -->
+
+
+
+
+    <!-- jQuery 2.2.3 -->
+    <script src="/static/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/admin/static/vendor/select2/select2.min.js?v=3.5.2" type="text/javascript"></script>
+
+
+
+    <!-- Morris.js charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="/static/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="/static/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="/static/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="/static/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="/static/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="/static/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="/static/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="/static/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="/static/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/static/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/static/js/demo.js"></script>
+
+
+
+
+
+
+
+
+
+    <script src="/admin/static/vendor/bootstrap-daterangepicker/daterangepicker.js?v=1.3.22"></script>
+
+    <script src="/admin/static/admin/js/form.js?v=1.0.1"></script>
+
+
+
+
+</body>
+
+</html>

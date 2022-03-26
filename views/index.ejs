@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Arrow Achievers
+    </title>
+
+    <%- include('./includes/head.ejs') %>
+</head>
+
+<body>
+    <!--<div class="loading-overlay">
+			<div class="bounce-loader">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>-->
+    </div>
+
+    <div class="body">
+        <%- include('./includes/header.ejs') %>
+
+            <div role="main" class="main">
+
+                <div class="slider-container rev_slider_wrapper" style="height: 550px;">
+                    <div id="revolutionSlider" class="slider rev_slider" data-version="5.4.8" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 1170, 'gridheight': 550, 'responsiveLevels': [4096,1200,992,500]}">
+                        <ul>
+                            <% images.forEach(e=>{%>
+                                <li data-transition="fade">
+                                    <img src="/<%= e.imageUrl %>" alt="<%= e.altText %>" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-kenburns="on" data-duration="25000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="100" data-rotatestart="0"
+                                        data-rotateend="0" data-offsetstart="0 -350" data-offsetend="0 350" data-bgparallax="0" class="rev-slidebg">
+                                    <div class="tp-caption top-label" data-x="center" data-y="172" data-fontsize="['24','24','24','36']" data-start="500" data-transform_in="y:[-300%];opacity:0;s:500;">Welcome to</div>
+
+
+                                    <div class="tp-caption main-label" data-x="center" data-y="['210','210','210','230']" data-start="1500" data-whitespace="nowrap" data-fontsize="['62','62','62','82']" data-transform_in="y:[100%];s:500;" data-transform_out="opacity:0;s:500;" data-mask_in="x:0px;y:0px;">Arrow Achievers</div>
+
+                                    <div class="tp-caption bottom-label" data-x="center" data-y="['280','280','280','315']" data-start="2000" data-fontsize="['20','20','20','30']" data-transform_in="y:[100%];opacity:0;s:500;">Check out our courses and facilities.</div>
+                                </li>
+                                <%})%>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--News Ticker start-->
+                <div class="bg-primary text-light">
+                    <div class="container">
+                        <div class="row text-light py-3">
+                            <div class="col-1">
+                                <a href="/latest_news" class="btn btn-secondary newsFonts">News</a>
+                            </div>
+                            <div class="col-11">
+                                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                                    <% news.forEach(n=>{%>
+                                        <span><%= n.news %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <%})%>
+                                </marquee>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--News Ticker end-->
+
+                <!--Ads section start-->
+                <!-- <section style="background:#fff;">
+                    <div class="container py-3">
+						<div class="col-md-12 text-center">
+							<img src="/public/img/background/ads.jpg" />
+						</div>
+					</div>
+			</section>-->
+                <!--Ads section end-->
+
+                <section style="background:#f9f9f9;">
+                    <div class="container py-5">
+                        <h1 class="text-center font-weight-bold appear-animation" data-appear-animation="fadeInUpShorter">Our Courses</h1>
+                        <div class="row appear-animation" data-appear-animation="fadeInUpShorter">
+                            <%- include('./includes/indexcourses.ejs') %>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container my-5">
+                    <h1 class="text-center font-weight-bold appear-animation" data-appear-animation="fadeInUpShorter"><a href="/skills" style="color:#212529;">Why Arrow Achievers?</a></h1>
+                </div>
+                <div class="container-fluid appear-animation" data-appear-animation="fadeInUpShorter">
+                    <div class="row featured-boxes-full">
+                        <div class="col-lg-3 featured-box-full featured-box-full-light text-left hover-effect-1" style="height: 298px;">
+                            <a href="/daring_skills"><i class="fas fa-user-friends text-primary"></i>
+							<h4 class="font-weight-normal text-5"><strong class="font-weight-extra-bold">Daring Skills</strong></h4>
+							<p class="mb-0">Rightly said, when it comes to protecting their country and people from the enemies, the cadets can prove to be the...</p>
+							</a>
+                        </div>
+                        <div class="col-lg-3 featured-box-full featured-box-full-light text-left hover-effect-1" style="height: 298px;">
+                            <a href="/soft_skills"><i class="fas fa-voicemail text-primary"></i>
+							<h4 class="font-weight-normal text-5"><strong class="font-weight-extra-bold">Soft Skills</strong></h4>
+							<p class="mb-0">Soft skills form the prerequisite for any job profile and when it comes to the safety and security of the nation,...</p>
+							</a>
+                        </div>
+                        <div class="col-lg-3 featured-box-full featured-box-full-light text-left hover-effect-1" style="height: 298px;">
+                            <a href="/it_skills"><i class="fas fa-desktop text-primary"></i>
+							<h4 class="font-weight-normal text-5"><strong class="font-weight-extra-bold">IT Skills</strong></h4>
+							<p class="mb-0">We firmly believe that in today’s rapidly changing dynamic world, expertise in IT skills is indispensable as it...</p>
+							</a>
+                        </div>
+                        <div class="col-lg-3 featured-box-full featured-box-full-light text-left hover-effect-1" style="height: 298px;">
+                            <a href="/other_skills"><i class="far fa-edit text-primary"></i>
+							<h4 class="font-weight-normal text-5"><strong class="font-weight-extra-bold">Other Skills</strong></h4>
+							<p class="mb-0">Truly said <b>“Skills can make a career or break a career ’</b>.We believe that building up a strong skill set...</p>
+							</a>
+                        </div>
+                    </div>
+                </div>
+                <section class="partnerSection">
+                    <div class="container my-5 py-5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-center font-weight-bold">Our Partners</h1>
+                            </div>
+                            <% partners.forEach(e=>{%>
+                                <div class="col-md-3">
+                                    <div class="partner">
+                                        <a href="javascript:void(0)" onclick="redirect('<%= e.link %>')">
+                                            <img src="/<%= e.photoUrl %>" alt="<%= e.name %>" />
+                                            <h2><%= e.type %></h2>
+                                        </a>
+                                    </div>
+                                </div>
+                                <%})%>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="container-fluid my-5 py-5">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="text-center font-weight-bold">Photo Gallery</h1>
+                        <%- include('./includes/gallery.ejs') %>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <%- include('./includes/footer_bottom.ejs') %>
+        </div>
+
+        <!-- Vendor -->
+
+        <%- include('./includes/scripts.ejs') %>
+            <script>
+                $(document).ready(function() {
+                    $('#navHome').addClass(' active');
+                });
+            </script>
+</body>
+
+</html>

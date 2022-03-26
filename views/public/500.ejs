@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Arrow Achievers
+    </title>
+
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm" style="background: url(/public/img/background/upcoming.jpg); background-size: cover; height: 400px; background-repeat: no-repeat;">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 order-2 order-md-1 align-self-center backgroundHeading">
+                                <h1 data-title-border>500! Internal Server Error.</h1>
+                            </div>
+                            <!-- <div class="col-md-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container pb-1">
+                    <div class="row pt-4">
+                        <div class="col">
+                            <div class="overflow-hidden mb-3">
+                                <h1 class="text-center font-weight-bold">500! Internal Server Error</h1>
+                                <h4 class="text-center">Please try again after sometime or reach out to us.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <div class="row mt-5 py-3">
+                        <div class="col-md-12">
+                            <div class="toggle toggle-primary toggle-simple m-0" data-plugin-toggle>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <%- include('../includes/footer_bottom.ejs') %>
+    </div>
+
+    <!-- Vendor -->
+    <%- include('../includes/scripts.ejs') %>
+        <script>
+            $(document).ready(function() {
+                $('#navAbout').addClass(' active');
+            });
+        </script>
+
+</body>
+
+</html>

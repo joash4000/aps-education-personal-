@@ -1,0 +1,11 @@
+<div class="lightbox mt-5" data-plugin-options="{'delegate': 'a', 'type': 'image', 'gallery': {'enabled': true}, 'mainClass': 'mfp-with-zoom', 'zoom': {'enabled': true, 'duration': 300}}">
+    <div class="owl-carousel owl-theme stage-margin" data-plugin-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
+        <% gallery.forEach(e=>{%>
+            <div>
+                <a class="img-thumbnail img-thumbnail-no-borders img-thumbnail-hover-icon" href="/<%= e.imageUrl %>">
+                    <img class="img-fluid" src="/<%= e.imageUrl %>" alt="<%= e.altText %>">
+                </a>
+            </div>
+            <%})%>
+    </div>
+</div>

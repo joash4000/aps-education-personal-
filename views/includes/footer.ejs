@@ -1,0 +1,206 @@
+<!-- <div class="map-above" style="min-height:450px;">
+    <div id="googlemaps" class="map-above-map google-map m-0" style="overflow: hidden;">
+        <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+            <div class="gm-err-container">
+                <div class="gm-err-content">
+                    <div class="gm-err-icon"><img src="https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png" draggable="false" style="user-select: none;"></div>
+
+                    <div class="gm-err-title">Oops! Something went wrong.</div>
+                    <div class="gm-err-message">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="map-above-content section section-no-border m-0 p-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-lg-6 bg-color-dark p-3">
+                    <h3 class="text-4 font-weight-bold text-color-light mb-3 mt-2">Contact Us</h3>
+                    <div class="feature-box feature-box-style-2 mb-4">
+                        <div class="feature-box-icon">
+                            <i class="icon-call-in icons text-color-tertiary"></i>
+                        </div>
+                        <div class="feature-box-info">
+                            <h6 class="mb-0 text-2 text-muted">Call us</h6>
+                            <a href="tel:9389551102" class="text-color-light font-weight-semibold text-decoration-none">
+                                +91 9389551102
+                            </a>
+                        </div>
+                    </div>
+                    <div class="feature-box feature-box-style-2 mb-3">
+                        <div class="feature-box-icon">
+                            <i class="icon-location-pin icons text-color-tertiary"></i>
+                        </div>
+                        <div class="feature-box-info">
+                            <h6 class="mb-0 text-2 text-muted">Our Location</h6>
+                            <p class="tall text-color-light font-weight-semibold">
+                                Khiwai, Rohta Road, Meerut (UP)
+                            </p>
+                        </div>
+                    </div>
+                    <h4 class="text-3 font-weight-semibold mb-0 text-muted">SEND US A MESSAGE</h4>
+                    <form id="contactForm" class="contact-form" action="/contact" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <div class="contact-form-success alert alert-success d-none" id="contactSuccess">
+                            Message has been sent to us.
+                        </div>
+
+                        <div class="contact-form-error alert alert-danger d-none" id="contactError">
+                            Error sending your message.
+                            <span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-lg-6 pr-lg-2">
+                                <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control py-2" placeholder="Your Name..." name="name" id="name" required>
+                            </div>
+                            <div class="form-group col-lg-6 pl-lg-2">
+                                <input type="text" value="" data-msg-required="Please enter your phone." maxlength="10" minlength="10" class="form-control py-2" placeholder="Your Phone..." name="phone" id="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control py-2" placeholder="Your Email Address..." name="email" id="email" required="">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <textarea maxlength="5000" data-msg-required="Please enter your message." rows="4" class="form-control" placeholder="Your Message..." name="message" id="message" required=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <input type="submit" value="SUBMIT" class="btn btn-xl btn-outline btn-tertiary text-1 font-weight-bold text-uppercase" data-loading-text="Loading...">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->
+<style>
+    .map-container-6 {
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        height: 0;
+    }
+    
+    .map-container-6 iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+</style>
+<section class="section">
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-5 mb-4 bg-color-dark p-3 ml-5 mr-5">
+
+            <!--Form with header-->
+            <h3 class="text-4 font-weight-bold text-color-light mb-3 mt-2">Contact Us</h3>
+            <div class="feature-box feature-box-style-2 mb-4">
+                <div class="feature-box-icon">
+                    <i class="icon-call-in icons text-color-tertiary"></i>
+                </div>
+                <div class="feature-box-info">
+                    <h6 class="mb-0 text-2 text-muted">Call us</h6>
+                    <a href="tel:9389551102" class="text-color-light font-weight-semibold text-decoration-none">
+                                +91 9389551102
+                            </a>
+                </div>
+            </div>
+            <div class="feature-box feature-box-style-2 mb-3">
+                <div class="feature-box-icon">
+                    <i class="icon-location-pin icons text-color-tertiary"></i>
+                </div>
+                <div class="feature-box-info">
+                    <h6 class="mb-0 text-2 text-muted">Our Location</h6>
+                    <p class="tall text-color-light font-weight-semibold">
+                        Khiwai, Rohta Road, Meerut (UP)
+                    </p>
+                </div>
+            </div>
+            <h4 class="text-3 font-weight-semibold mb-0 text-muted">SEND US A MESSAGE</h4>
+            <form id="contactForm" class="contact-form" action="/contact" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="contact-form-success alert alert-success d-none" id="contactSuccess">
+                    Message has been sent to us.
+                </div>
+
+                <div class="contact-form-error alert alert-danger d-none" id="contactError">
+                    Error sending your message.
+                    <span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-6 pr-lg-2">
+                        <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control py-2" placeholder="Your Name..." name="name" id="name" required>
+                    </div>
+                    <div class="form-group col-lg-6 pl-lg-2">
+                        <input type="text" value="" data-msg-required="Please enter your phone." maxlength="10" minlength="10" class="form-control py-2" placeholder="Your Phone..." name="phone" id="phone" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control py-2" placeholder="Your Email Address..." name="email" id="email" required="">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <textarea maxlength="5000" data-msg-required="Please enter your message." rows="4" class="form-control" placeholder="Your Message..." name="message" id="message" required=""></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <input type="submit" value="SUBMIT" class="btn btn-xl btn-outline btn-tertiary text-1 font-weight-bold text-uppercase" data-loading-text="Loading...">
+                    </div>
+                </div>
+            </form>
+            <!--Form with header-->
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-6">
+
+            <!--Google map-->
+            <div id="map-container-google-11" class="z-depth-1-half map-container-6" style="height: 400px">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3485.6739537338863!2d77.46477681504749!3d29.115305682229824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c471da2455579%3A0xf12319d007ab1865!2sArrow%20Achievers!5e0!3m2!1sen!2sus!4v1594633586645!5m2!1sen!2sus"
+                    width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+
+
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</section>
+<!--Section: Contact v.1-->
+
+<footer id="footer" style="margin-top: 0px;">
+    <div class="footer-copyright">
+        <div class="container py-2">
+            <div class="row py-4">
+                <div class="col-lg-1 d-flex align-items-center justify-content-center justify-content-lg-start mb-2 mb-lg-0">
+                    <a href="/" class="logo pr-0 pr-lg-3">
+                        <!-- <img alt="Porto Website Template" src="img/logo-footer.png" class="opacity-5" height="33"> -->
+                    </a>
+                </div>
+                <div class="col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-start mb-4 mb-lg-0">
+                    <p>© 2020 Arrow Achievers. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end">
+                    <nav id="sub-menu">
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i><a href="/page-faq" class="ml-1 text-decoration-none"> FAQ's</a></li>
+                            <li><i class="fas fa-angle-right"></i><a href="/sitemap" class="ml-1 text-decoration-none"> Terms & Conditions</a></li>
+                            <li><i class="fas fa-angle-right"></i><a href="/contact-us" class="ml-1 text-decoration-none"> Privacy Policy</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

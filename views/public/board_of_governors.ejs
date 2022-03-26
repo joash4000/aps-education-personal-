@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Arrow Achievers
+    </title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Porto - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                                <span class="page-header-title-border visible" style="width: 43.25px;"></span>
+                                <h1 data-title-border="">Board of Governors</h1>
+                            </div>
+                            <!-- <div class="col-md-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ======= Advisiory Section ======= -->
+                <section id="services" class="services">
+                    <div class="container">
+
+                        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+                            <h1 class="word-rotator slide font-weight-bold text-8 mb-20 appear-animation animated maskUp appear-animation-visible text-center" data-appear-animation="maskUp" style="animation-delay: 100ms;">
+                                <span>Board of Governors</span>
+                            </h1>
+                        </div>
+                        <style>
+                            .boarAdvisory {
+                                background: #fbfbfb;
+                                display: inline-block;
+                                padding: 15px;
+                                border: 1px solid #efefef;
+                            }
+                            
+                            .boarAdvisory .text {
+                                margin-left: 174px;
+                            }
+                            
+                            .boarAdvisory .text h2 {
+                                font-weight: 700;
+                                font-size: 22px;
+                                margin-bottom: 0;
+                                color: #7c7b7b;
+                            }
+                            
+                            .boarAdvisory .text h3 {
+                                font-weight: 500;
+                                font-size: 16px;
+                                margin-bottom: 0;
+                                color: #828181;
+                                text-transform: capitalize;
+                            }
+                            
+                            .boarAdvisory .text p {
+                                font-weight: normal;
+                                font-size: 14px;
+                                margin-bottom: 0;
+                            }
+                            
+                            .boarAdvisory .img img {
+                                width: 150px;
+                                border-radius: 50%;
+                                float: left;
+                            }
+                            
+                            .mb20 {
+                                margin-bottom: 20px;
+                            }
+                        </style>
+                        <div class="row">
+                            <% members.forEach(e =>{%>
+                                <div class="col-md-12 mb20">
+                                    <div class="boarAdvisory">
+                                        <div class="img"><img src="<%= e.photoUrl %>" class="img-circle" alt=""></div>
+                                        <div class="text">
+                                            <h2>
+                                                <%= e.name %>
+                                            </h2>
+                                            <h3>
+                                                <%= e.designation %>
+                                            </h3>
+                                            <p>
+                                                <%= e.about %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%})%>
+                        </div>
+                </section>
+
+                </div>
+                <!-- End Advisiory Section -->
+
+            </div>
+            <%- include('../includes/footer_bottom.ejs') %>
+    </div>
+
+    <!-- Vendor -->
+    <%- include('../includes/scripts.ejs') %>
+        <script>
+            $(document).ready(function() {
+                $('#navAbout').addClass(' active');
+            });
+        </script>
+
+</body>
+
+</html>

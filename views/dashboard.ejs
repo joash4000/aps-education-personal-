@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>APS Education</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <%- include('./include-admin/style.ejs') %>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+</head>
+
+<body class="skin-blue">
+    <div class="wrapper">
+
+        <%- include('./include-admin/header.ejs') %>
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Dashboard
+                        <small>Control panel</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-lg-4 col-xs-6">
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>
+                                        <%= registerations %>
+                                    </h3>
+                                    <h5><i class="fa fa-arrow-up"></i>
+                                        <%= reg[0].count %>
+                                    </h5>
+                                    <p>Student Registerations</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="/admin/registeration" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-6">
+                            <div class="small-box bg-purple">
+                                <div class="inner">
+                                    <h3>
+                                        <%= sum %>
+                                    </h3>
+                                    <h5><i class="fa fa-arrow-up"></i>
+                                        <%= payment[0].count %>
+                                    </h5>
+                                    <p>Payments</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-inr"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">&nbsp;</a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>
+                                        <%= surveys %>
+                                    </h3>
+                                    <h5><i class="fa fa-arrow-up"></i>
+                                        <%= sur[0].count %>
+                                    </h5>
+                                    <p>Surveys</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                                <a href="/admin/survey" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>
+                                        <%= courses %>
+                                    </h3>
+                                    <h5>&nbsp;</h5>
+                                    <p>Courses</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-book"></i>
+                                </div>
+                                <a href="<%= (roleunique === 'ADMIN')?'/admin/course':'#' %>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-6">
+                            <div class="small-box bg-red">
+                                <div class="inner">
+                                    <h3>
+                                        <%= colleges %>
+                                    </h3>
+                                    <h5>&nbsp;</h5>
+                                    <p>Colleges</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa  fa-graduation-cap"></i>
+                                </div>
+                                <a href="<%= (roleunique === 'ADMIN')?'/admin/college':'#' %>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-6">
+                            <div class="small-box bg-maroon">
+                                <div class="inner">
+                                    <h3>
+                                        <%= core %>
+                                    </h3>
+                                    <h5>&nbsp;</h5>
+                                    <p>Core Faculties</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <a href="<%= (roleunique === 'ADMIN')?'/admin/core-faculties':'#' %>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <section class="col-lg-7 connectedSortable">
+                            <!-- Custom tabs (Charts with tabs)-->
+                            <div class="nav-tabs-custom">
+                                <!-- Tabs within a box -->
+                                <ul class="nav nav-tabs pull-right">
+                                    <li class="active"><a href="#revenue-chart" data-toggle="tab">Payments</a></li>
+                                    <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+                                </div>
+                            </div>
+                            <!-- /.nav-tabs-custom -->
+
+                            <!-- quick email widget -->
+                            <div class="box box-info" style="margin: auto;">
+                                <div class="box-header">
+                                    <i class="fa fa-envelope"></i>
+
+                                    <h3 class="box-title">Quick Email</h3>
+                                    <!-- tools box -->
+                                    <div class="pull-right box-tools">
+                                        <!-- <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+          <i class="fa fa-times"></i></button> -->
+                                    </div>
+                                    <!-- /. tools -->
+                                </div>
+                                <div class="box-body">
+                                    <form action="/admin/email" method="post">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <div class="form-group">
+                                            <input type="text" required class="form-control" name="emailto" placeholder="Email to:">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" required class="form-control" name="subject" placeholder="Subject">
+                                        </div>
+                                        <div>
+                                            <textarea name="msg" required class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                        </div>
+                                        <% if(roleunique === 'ADMIN') {%>
+                                            <div class="box-footer clearfix">
+                                                <button type="submit" class="pull-right btn btn-default" id="sendEmail">Send
+                <i class="fa fa-arrow-circle-right"></i></button>
+                                            </div>
+                                            <%}%>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </section>
+                        <!-- /.Left col -->
+                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                        <section class="col-lg-5 connectedSortable">
+                            <!-- solid sales graph -->
+                            <div class="box box-solid ">
+                                <div class="box-header">
+                                    <i class="fa fa-th"></i>
+                                    <h3 class="box-title">Student Registrations</h3>
+                                </div>
+                                <div class="box-body border-radius-none">
+                                    <div class="chart" id="line-chart1" style="height: 282px;"></div>
+                                </div>
+                            </div>
+                            <div class="box box-solid ">
+                                <div class="box-header">
+                                    <i class="fa fa-th"></i>
+                                    <h3 class="box-title">Survey</h3>
+                                </div>
+                                <div class="box-body border-radius-none">
+                                    <div class="chart" id="line-chart" style="height: 282px;"></div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+            </footer>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script>
+        Morris.Bar({
+            element: 'line-chart1',
+            data: [{
+                year: '<%= reg[6].day %>',
+                value: <%= reg[6].count %>
+            }, {
+                year: '<%= reg[5].day %>',
+                value: <%= reg[5].count %>
+            }, {
+                year: '<%= reg[4].day %>',
+                value: <%= reg[4].count %>
+            }, {
+                year: '<%= reg[3].day %>',
+                value: <%= reg[3].count %>
+            }, {
+                year: '<%= reg[2].day %>',
+                value: <%= reg[2].count %>
+            }, {
+                year: '<%= reg[1].day %>',
+                value: <%= reg[1].count %>
+            }, {
+                year: '<%= reg[0].day %>',
+                value: <%= reg[0].count %>
+            }],
+            xkey: 'year',
+            ykeys: ['value'],
+            labels: ['Value']
+        });
+        Morris.Bar({
+            element: 'line-chart',
+
+            data: [{
+                year: '<%= sur[6].day %>',
+                value: <%= sur[6].count %>
+            }, {
+                year: '<%= sur[5].day %>',
+                value: <%= sur[5].count %>
+            }, {
+                year: '<%= sur[4].day %>',
+                value: <%= sur[4].count %>
+            }, {
+                year: '<%= sur[3].day %>',
+                value: <%= sur[3].count %>
+            }, {
+                year: '<%= sur[2].day %>',
+                value: <%= sur[2].count %>
+            }, {
+                year: '<%= sur[1].day %>',
+                value: <%= sur[1].count %>
+            }, {
+                year: '<%= sur[0].day %>',
+                value: <%= sur[0].count %>
+            }],
+            xkey: 'year',
+            ykeys: ['value'],
+            labels: ['Value']
+        });
+        Morris.Line({
+            element: 'revenue-chart',
+            data: [{
+                year: '<%= payment[6].day %>',
+                value: <%= payment[6].count %>
+            }, {
+                year: '<%= payment[5].day %>',
+                value: <%= payment[5].count %>
+            }, {
+                year: '<%= payment[4].day %>',
+                value: <%= payment[4].count %>
+            }, {
+                year: '<%= payment[3].day %>',
+                value: <%= payment[3].count %>
+            }, {
+                year: '<%= payment[2].day %>',
+                value: <%= payment[2].count %>
+            }, {
+                year: '<%= payment[1].day %>',
+                value: <%= payment[1].count %>
+            }, {
+                year: '<%= payment[0].day %>',
+                value: <%= payment[0].count %>
+            }],
+            xkey: 'year',
+            ykeys: ['value'],
+            labels: ['Value']
+        });
+    </script>
+    <%- include('./include-admin/scripts.ejs') %>
+        <script>
+            document.getElementById('navhome').classList.add('active');
+        </script>
+</body>
+
+</html>

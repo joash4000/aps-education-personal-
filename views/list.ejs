@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./include-admin/style.ejs') %>
+        <style>
+            .dataTables_filter {
+                text-align: right;
+            }
+        </style>
+        <style>
+            tr:hover {
+                cursor: pointer;
+                background-color: aliceblue;
+            }
+        </style>
+</head>
+
+<body class="skin-blue">
+    <div class="wrapper">
+        <%- include('./include-admin/header.ejs') %>
+            <div class="content-wrapper">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="/admin/registeration/">List</a>
+                    </li>
+                    <li>
+                        <a href="/admin/registeration/create/">Create</a>
+                    </li>
+                    <li>
+                        <a href="/admin/registeration/edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="/admin/registeration/csv">Export All</a>
+                    </li>
+                    <li class="dropdown">
+
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                        Add Filter<b class="caret"></b>
+                    </a>
+                        <ul class="dropdown-menu field-filters">
+                            <li>
+                                <a href="javascript:void(0)" class="filter" onclick="course()">Course</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="filter" onclick="college()">College</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" class="filter" onclick="date()">Date</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Registrations</h3>
+                                </div>
+                                <% if (error_msg.length>0) { %>
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                        <%= error_msg %>
+                                    </div>
+                                    <% } %>
+                                        <div class="box-body table-responsive">
+                                            <form action="/admin/registeration/filter" method="POST" class="course" style="display: none;">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                <label for="course">Course:</label>
+                                                <select name="course" id="course">
+                                        <% courses.forEach(c => { %>
+                                            <option value="<%= c.courseName %>"><%= c.courseName %></option>
+                                       <% }) %>
+                                    </select>
+                                                <button type="submit">Submit</button>
+                                            </form>
+                                            <form action="/admin/registeration/filter" method="POST" class="college" style="display: none;">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                <label for="college">College:</label>
+                                                <select name="college" id="college">
+                                        <% colleges.forEach(c => { %>
+                                            <option value="<%= c.collegeName %>"><%= c.collegeName %></option>
+                                       <% }) %>
+                                    </select>
+                                                <button type="submit">Submit</button>
+                                            </form>
+                                            <form action="/admin/registeration/filter" method="POST" class="date" style="display: none;">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                <label for="sdate">Start Date</label>
+                                                <input type="date" name="sdate">
+                                                <label for="edate">End Date</label>
+                                                <input type="date" name="edate">
+                                                <button type="submit">Submit</button>
+                                            </form>
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Email</th>
+                                                        <th>Name</th>
+                                                        <th>Contact No.</th>
+                                                        <th>Courses</th>
+                                                        <th>Whatsapp Number</th>
+                                                        <th>Date of Birth</th>
+                                                        <th>Address</th>
+                                                        <th>Payment Status</th>
+                                                        <th>Order ID</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% if(!users) {%>
+                                                        <tr>
+                                                            <td>
+                                                                No users
+                                                            </td>
+                                                        </tr>
+                                                        <%} else { %>
+                                                            <% users.forEach(u => { %>
+                                                                <span>
+                                                        <input type="hidden" name="_id" id="">
+                                                    <tr onclick="clicked('<%= u._id %>')">
+                                                        <td>
+                                                            <%= u.email %>
+                                                        </td>
+                                                        <td>
+                                                            <%= u.name %>
+                                                        </td>
+                                                        <td>
+                                                            <%= u.contact %>
+                                                        </td>
+                                                        <td>
+                                                            <% u.courses.forEach(e => { %>
+                                                                <%= e %> <br>
+                                                                    <% }) %>
+                                                        </td>
+                                                        <td>
+                                                            <%= u.whatsapp %>
+                                                        </td>
+                                                        <td><% if(u.dob){ %>
+                                                            <%= u.dob.toString().substring(4,15) %>
+                                                            <% } %>
+                                                        </td>
+                                                        <td><%= u.address %></td>
+                                                        <% if(u.razorpay_order_id) {%>
+                                                            <td>Success-₹<%= u.amount %></td>
+                                                        <%} else {%>
+                                                            <td>Not Paid</td>
+                                                            <% } %>
+                                                            <td><%= u.order_id %></td>
+                                                    </tr>
+                                                </span>
+                                                                <% }) %>
+                                                                    <% } %>
+                                                </tbody>
+                                            </table>
+                                            <button class="buttonexp" style="display: block; margin: auto;">Export</button>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </section>
+    </div>
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+        <div class="pull-right hidden-xs">
+        </div>
+    </footer>
+    <%- include('./include-admin/scripts.ejs') %>
+
+        <script type="text/javascript">
+            $(function() {
+                $("#example1").dataTable({
+                    "bSort": false
+                });
+            });
+        </script>
+        <script>
+            function clicked(u) {
+                location.replace(`/admin/registeration/edit/${u}`);
+            }
+        </script>
+        <script>
+            function course() {
+                document.querySelector('.course').style.display = "block";
+                document.querySelector('.college').style.display = "none";
+                document.querySelector('.date').style.display = "none";
+            }
+
+            function college() {
+                document.querySelector('.college').style.display = "block";
+                document.querySelector('.course').style.display = "none";
+                document.querySelector('.date').style.display = "none";
+            }
+
+            function date() {
+                document.querySelector('.college').style.display = "none";
+                document.querySelector('.course').style.display = "none";
+                document.querySelector('.date').style.display = "block";
+            }
+        </script>
+        <script src="/table/src/jquery.table2excel.js"></script>
+        <script>
+            $(".buttonexp").click(function() {
+                console.log('pppp')
+                $("#example1").table2excel({
+                    // exclude CSS class
+                    exclude: ".noExl",
+                    name: "Data",
+                    filename: "Data", //do not include extension
+                    fileext: ".xls" // file extension
+                });
+            });
+        </script>
+        <script>
+            document.getElementById('navreg').classList.add('active');
+        </script>
+</body>
+
+</html>

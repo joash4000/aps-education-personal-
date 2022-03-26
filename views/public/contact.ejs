@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Arrow Achievers</title>
+
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                                <span class="page-header-title-border visible" style="width: 43.25px;"></span>
+                                <h1 data-title-border="">Contact Us</h1>
+                            </div>
+                            <!-- <div class="col-md-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container py-5">
+                    <h1 class="text-center font-weight-bold appear-animation" data-appear-animation="fadeInUpShorter">Contact Us</h1>
+                    <div class="row appear-animation mt-5 pt-5" data-appear-animation="fadeInUpShorter">
+                        <div class="col-md-4">
+                            <div style="background:#f7f7f7;padding:16px;">
+                                <h4><b>Address</b></h4>
+                                <p>
+                                    Khiwai, Rohta Road, Meerut (UP)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background:#f7f7f7;padding:16px;">
+                                <h4><b>Contact Number</b></h4>
+                                <p>
+                                    +91 9389551102
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="background:#f7f7f7;padding:16px;">
+                                <h4><b>Email Address</b></h4>
+                                <p>
+                                    arrowachievers@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <%- include('../includes/footer.ejs') %>
+    </div>
+
+    <!-- Vendor -->
+    <%- include('../includes/scripts.ejs') %>
+        <script>
+            $(document).ready(function() {
+                $('#contact').addClass('active');
+            });
+        </script>
+        <script>
+            function checker() {
+                const email = document.getElementById('email').value;
+                const contact = document.getElementById('phone').value;
+                if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+                    alert('Invalid Email');
+                    return false;
+                }
+                if (!(/^[0-9]+$/.test(contact))) {
+                    alert('Invaid Contact Number');
+                    return false;
+                }
+                if (document.getElementById('name').value.trim().length === 0) {
+                    alert('Name is required');
+                    return false;
+                }
+                if (document.getElementById('message').value.trim().length === 0) {
+                    alert('Message is required');
+                    return false;
+                }
+                return true;
+            }
+            $(document).ready(function() {
+                $('#contactForm').on('submit', async function(e) {
+                    if (!checker()) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        </script>
+</body>
+
+</html>

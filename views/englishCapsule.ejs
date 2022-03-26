@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./include-admin/style.ejs') %>
+        <style>
+            @media (min-width: 768px) {
+                .form-horizontal .control-label {
+                    padding-top: 7px;
+                    margin-bottom: 0;
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        </style>
+</head>
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+
+        <%- include('./include-admin/header.ejs') %>
+            <!-- Content Wrapper. Contains page content color white-->
+            <div class="content-wrapper">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="/admin/gallery">List</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#modal-default">Create</a>
+                    </li>
+                </ul>
+                <section class="content">
+                    <h2 class="page-header">English Ecapsule</h2>
+                    <% if(error_msg.length>0) {%>
+                        <h3 style="color: red; margin-left: 5px;">
+                            <%= error_msg %>
+                        </h3>
+                        <% } %>
+                            <div class="row">
+                                <% videos.forEach(e =>{%>
+                                    <!-- left column -->
+                                    <div class="col-md-12">
+                                        <!-- general form elements -->
+                                        <div class="box box-primary">
+                                            <div class="box-header">
+                                                <div class="form-group">
+                                                    <a href="/admin/ecapsule-english/state?id=<%= e._id %>" class="btn btn-primary mt-3">
+                                                        <%=(e.active)?'Active':'Inactive' %>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                <a href="<%=e.link%>">
+                                                    <%=e.link%>
+                                                </a>
+                                                <iframe src="<%=e.link%>" frameborder="0" width="100%" height="500px"></iframe>
+                                            </div>
+                                            <!-- /.box-body -->
+                                        </div>
+
+                                        <!-- /.box -->
+                                        <%})%>
+                                    </div>
+                </section>
+                <section class="content">
+                    <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Ecapsule English</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/admin/ecapsule-english/add" enctype="multipart/form-data" method="POST">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Ecapsule PDF</label>
+                                            <input type="file" class="form-control" required name="photo" id="exampleInputPassword1" placeholder="Link">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="checkbox" id="exampleInputFile" name="active">&nbsp;Active
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+
+                </section>
+                <!-- /.content -->
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <!-- / Content Wrapper. color white -->
+
+                <!-- Control Sidebar -->
+
+                <footer class="main-footer">
+                    <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+                    <div class="pull-right hidden-xs">
+                    </div>
+                </footer>
+
+
+            </div>
+            <!-- ./wrapper -->
+
+
+            <%- include('./include-admin/scripts.ejs') %>
+                <script type="text/javascript">
+                    $(function() {
+                        $("#example1").dataTable();
+                        $('#example2').dataTable({
+                            "bPaginate": true,
+                            "bLengthChange": false,
+                            "bFilter": false,
+                            "bSort": true,
+                            "bInfo": true,
+                            "bAutoWidth": false
+                        });
+                    });
+                </script>
+
+                <script>
+                    document.getElementById('navecapsuleenglish').classList.add('active');
+                </script>
+</body>
+
+</html>

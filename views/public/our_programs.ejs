@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Arrow Achievers
+    </title>
+
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm" style="background: url(/public/img/background/program.jpg); background-size: cover; height: 400px; background-repeat: no-repeat;">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 order-2 order-md-1 align-self-center backgroundHeading">
+                                <span class="page-header-title-border visible" style="width: 43.25px;"></span>
+                                <h1 data-title-border="">Our Programmes</h1>
+                            </div>
+                            <!-- <div class="col-md-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="container py-5">
+                        <h1 class="text-center font-weight-bold appear-animation" data-appear-animation="fadeInUpShorter">Our Programmes</h1>
+                        <div class="row appear-animation mt-5 pt-5" data-appear-animation="fadeInUpShorter">
+                            <%- include('../includes/indexcourses.ejs') %>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <%- include('../includes/footer_bottom.ejs') %>
+    </div>
+
+    <!-- Vendor -->
+    <%- include('../includes/scripts.ejs') %>
+        <script>
+            $(document).ready(function() {
+                $('#navCourses').addClass(' active');
+            });
+        </script>
+
+</body>
+
+</html>

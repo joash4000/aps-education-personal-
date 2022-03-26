@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Arrow Achievers
+    </title>
+
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm" style="background: url(/public/img/background/vacancy.jpg); background-size: cover; height: 400px; background-repeat: no-repeat;">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 order-2 order-md-1 align-self-center backgroundHeading">
+                                <h1 data-title-border>Latest Vacancies</h1>
+                            </div>
+                            <!-- <div class="col-md-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a  href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container pb-1">
+
+                    <div class="row pt-4">
+                        <div class="col">
+                            <div class="overflow-hidden mb-3">
+                                <h1 class="text-center font-weight-bold">Latest Vacancies</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="section section-height-3 bg-color-grey-scale-1 m-0 border-0">
+                    <div class="container">
+                        <ul class="categoryList">
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://nda.nic.in/')"><i><img src="/public/img/vacancy_icon/officer.png" /></i><span>NDA</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://ssb.nic.in/')"><i><img src="/public/img/vacancy_icon/up_police.png" /></i><span>SSB</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://ssc.nic.in/')"><i><img src="/public/img/vacancy_icon/soldier.png" /></i><span>CPO</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://afcat.cdac.in/AFCAT/')"><i><img src="/public/img/vacancy_icon/airforce.png" /></i><span>AFCAT</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://upsc.gov.in/')"><i><img src="/public/img/vacancy_icon/cds.png" /></i><span>CDS/OTA</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://www.delhipolice.nic.in/')"><i><img src="/public/img/vacancy_icon/up_police.png" /></i><span>Delhi Police</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://uppolice.gov.in/')"><i><img src="/public/img/vacancy_icon/up_police.png" /></i><span>UP Police</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://joinindianarmy.nic.in/index.htm')"><i><img src="/public/img/vacancy_icon/indian_army.png" /></i><span>Indian Army</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://www.joinindiannavy.gov.in')"><i><img src="/public/img/vacancy_icon/idian_navy.png" /></i><span>Indian Navy</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://indianairforce.nic.in/')"><i><img src="/public/img/vacancy_icon/airforce.png" /></i><span>Indian Air Force</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('http://recruitment.itbpolice.nic.in/')"><i><img src="/public/img/vacancy_icon/soldier.png" /></i><span>ITBP Police</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://crpf.gov.in/recruitment.htm')"><i><img src="/public/img/vacancy_icon/soldier.png" /></i><span>CRPF</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://www.cisf.gov.in/cisfeng/recruitment/')"><i><img src="/public/img/vacancy_icon/soldier.png" /></i><span>CISF</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('http://www.indianrailways.gov.in/railwayboard/')"><i><img src="/public/img/vacancy_icon/railway.png" /></i><span>Indian Railways</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://www.ncs.gov.in/')"><i><img src="/public/img/vacancy_icon/jobs.png" /></i><span>Other Jobs</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" onclick="redirect('https://joinindiancoastguard.gov.in/')"><i><img src="/public/img/vacancy_icon/idian_navy.png" /></i><span>Coast Guard</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+
+
+
+            </div>
+            <%- include('../includes/footer_bottom.ejs') %>
+    </div>
+
+    <!-- Vendor -->
+    <%- include('../includes/scripts.ejs') %>
+        <script>
+            $(document).ready(function() {
+                $('#carrer').addClass(' active');
+            });
+        </script>
+
+</body>
+
+</html>

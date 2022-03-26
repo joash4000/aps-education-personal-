@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./include-admin/style.ejs') %>
+        <style>
+            label {
+                display: block;
+                text-align: left;
+            }
+            
+            #a {
+                display: block;
+                text-align: left;
+            }
+        </style>
+</head>
+
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+        <%- include('./include-admin/header.ejs') %>
+            <div class="content-wrapper">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="/admin/survey/">List</a>
+                    </li>
+                    <li>
+                        <a href="/admin/survey/create">Create</a>
+                    </li>
+                    <li class="active">
+                        <a href="/admin/survey/edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="/admin/survey/csv">Export</a>
+                    </li>
+                </ul>
+                <section class="container-fluid">
+                    <div class="row">
+                        <div class="text-center col-md-8 col-md-offset-2">
+                            <div class="box box-primary" style="background-color: #ebeff3;">
+                                <% if (errorMessage) { %>
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                        <%= errorMessage %>
+                                    </div>
+                                    <% } %>
+                                        <form action="/admin/survey/edit/true" method="POST" style="padding: 10px;" enctype="multipart/form-data">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <div class="form-group">
+                                                <label for="courses">Course
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" data-role="select2" id="departments" multiple name="courses">
+                                    <% courses.forEach(c => { %>
+                                        <option value="<%= c.courseName %>" 
+                                            <% if(user.courses.includes(c.courseName)) { %>
+                                            selected
+                                            <% } %>
+                                            ><%= c.courseName %> (INR <%= c.coursePrice %>)</option>
+                                    <% }) %>
+                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="college">College
+        &nbsp;
+    </label>
+                                                <input type="hidden" name="_id" value="<%= user._id %>">
+                                                <div>
+
+                                                    <select class="form-control" id="college" name="college">
+                                    <% colleges.forEach(e => { %>
+                                        <option value="<%= e.collegeName %>"
+                                            <% if(user.college === (e.college)) { %>
+                                                selected
+                                                <% } %>
+                                            ><%= e.collegeName %></option>
+
+                                    <% }) %>
+                                </select>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">Name<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="name" name="name" type="text" value="<%= user.name %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="father_name">Father Name
+        
+          
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="father_name" name="fatherName" required type="text" value="<%= user.fatherName %>">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="date-of-birth">Date Of Birth
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="date_of_birth" name="dob" data-role="datepicker" type="datetime" value="<%= user.dob %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email
+        
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="email" name="email" required type="text" value="<%= user.email %>">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address">Address
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="address" name="address" type="text" value="<%= user.address %>">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="state">State
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" data-allow-blank="1" id="state" name="state">
+                                    <option value="NONE" <%= (user.state === "NONE")?"selected":"" %>> </option>
+                                    <option value="ANDHRA PRADESH" <%= (user.state === "ANDHRA PRADESH")?"selected":" " %>>Andhra Pradesh</option>
+                                    <option value="ARUNACHAL PRADESH" <%= (user.state === "ARUNACHAL PRADESH")?"selected":" " %>>Arunachal Pradesh</option>
+                                    <option value="ASSAM" <%= (user.state === "ASSAM")?"selected":" " %>>Assam</option>
+                                    <option value="BIHAR" <%= (user.state === "BIHAR")?"selected":" " %>>Bihar</option>
+                                    <option value="CHHATTISGARH" <%= (user.state === "CHHATTISGARH")?"selected":" " %>>Chhattisgarh</option>
+                                    <option value="GOA" <%= (user.state === "GOA")?"selected":" " %>>Goa</option>
+                                    <option value="GUJARAT" <%= (user.state === "GUJARAT")?"selected":" " %>>Gujarat</option>
+                                    <option value="HARAYANA" <%= (user.state === "HARAYANA")?"selected":" " %>>Haryana</option>
+                                    <option value="HIMACHAL PRADESH" <%= (user.state === "HIMACHAL PRADESH")?"selected":" " %>>Himachal Pradesh</option>
+                                    <option value="JAMMU AND KASHMIR" <%= (user.state === "JAMMU AND KASHMIR")?"selected":" " %>>Jammu and Kashmir</option>
+                                    <option value="JHARKHAND" <%= (user.state === "JHARKHAND")?"selected":" " %>>Jharkhand</option>
+                                    <option value="KARANATAKA" <%= (user.state === "KARANATAKA")?"selected":" " %>>Karnataka</option>
+                                    <option value="KERELA" <%= (user.state === "KERELA")?"selected":" " %>>Kerala</option>
+                                    <option value="MADHYA PRADESH" <%= (user.state === "MADHYA PRADESH")?"selected":" " %>>Madhya Pradesh</option>
+                                    <option value="MAHARASHTRA" <%= (user.state === "MAHARASHTRA")?"selected":" " %>>Maharashtra</option>
+                                    <option value="MANIPUR" <%= (user.state === "MANIPUR")?"selected":" " %>>Manipur</option>
+                                    <option value="MEGHALAYA" <%= (user.state === "MEGHALAYA")?"selected":" " %>>Meghalaya </option>
+                                    <option value="MIZORAM" <%= (user.state === "MIZORAM")?"selected":" " %>>Mizoram </option>
+                                    <option value="NAGALAND" <%= (user.state === "NAGALAND")?"selected":" " %>>Nagaland</option>
+                                    <option value="TELENGANA" <%= (user.state === "TELENGANA")?"selected":" " %>>Telangana</option>
+                                    <option value="TRIPURA" <%= (user.state === "TRIPURA")?"selected":" " %>>Tripura</option>
+                                    <option value="UTTAR PRADESH" <%= (user.state === "UTTAR PRADESH")?"selected":" " %>>Uttar Pradesh</option>
+                                    <option value="UTTARAKHAND" <%= (user.state === "UTTARAKHAND")?"selected":" " %>>Uttarakhand</option>
+                                    <option value="WEST BENGAL" <%= (user.state === "WEST BENGAL")?"selected":" " %>>West Bengal</option>
+                                </select>
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="dist">District
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="dist" name="district" type="text" value="<%= user.district %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pincode">Tehsil
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="pincode" name="tehsil" type="text" value="<%= user.tehsil %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pincode1">Pincode
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="pincode1" name="pincode" type="number" value="<%= user.pincode %>">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact_no">Contact No.
+        
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="contact_no" name="contact" required type="text" value="<%= user.contact %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="height">Height<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="height" name="height" type="text" value="<%= user.height %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="weight">Weight<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="weight" name="weight" type="text" value="<%= user.weight %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="blood_group">Blood Group
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" data-allow-blank="1" data-role="select2" id="blood_group" name="bloodGroup">
+                                    <option value="NONE" <%= (user.bloodGroup === "NONE")?"selected":" " %>> </option>
+                                    <option value="A+" <%= (user.bloodGroup === "A+")?"selected":" " %>>A+</option>
+                                    <option value="B+" <%= (user.bloodGroup === "B+")?"selected":" " %>>B+</option>
+                                    <option value="AB+" <%= (user.bloodGroup === "AB+")?"selected":" " %>>AB+</option>
+                                    <option value="O+" <%= (user.bloodGroup === "O+")?"selected":" " %>>O+</option>
+                                    <option value="A-" <%= (user.bloodGroup === "A-")?"selected":" " %>>A-</option>
+                                    <option value="B-" <%= (user.bloodGroup === "B-")?"selected":" " %>>B-</option>
+                                    <option value="AB-" <%= (user.bloodGroup === "AB-")?"selected":" " %>>AB-</option>
+                                    <option value="O-"<%= (user.bloodGroup === "O-")?"selected":" " %>>O-</option>
+                                </select>
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_university">10th Board<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select name="board10" class="form-control" id="tenth_university">
+                                    <option value="NONE" <%= (user.board10 === "NONE")?"selected":" " %>>Select Board</option>
+                                    <option value="CBSE" id="CBSE" <%= (user.board10 === "CBSE")?"selected":" " %>>CBSE</option>
+                                    <option value="ICSE" id="ICSE" <%= (user.board10 === "ICSE")?"selected":" " %>>ICSE</option>
+                                    <option value="UP BOARD" id="UP BOARD" <%= (user.board10 === "UP BOARD")?"selected":" " %>>UP BOARD</option>
+                                    <option value="OTHER" id="OTHER" <%= (user.board10 === "OTHER")?"selected":" " %>>OTHER</option>
+                            </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="university">10th year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="university" name="year10" type="text" maxlength="4" minlength="4" value="<%= user.year10 %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_university">12th Board<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select name="board12" class="form-control" id="tenth_university">
+                                    <option value="NONE" <%= (user.board12 === "NONE")?"selected":" " %>>Select Board</option>
+                                    <option value="CBSE" id="CBSE" <%= (user.board12 === "CBSE")?"selected":" " %>>CBSE</option>
+                                    <option value="ICSE" id="ICSE" <%= (user.board12 === "ICSE")?"selected":" " %>>ICSE</option>
+                                    <option value="UP BOARD" id="UP BOARD" <%= (user.board12 === "UP BOARD")?"selected":" " %>>UP BOARD</option>
+                                    <option value="OTHER" id="OTHER" <%= (user.board12 === "OTHER")?"selected":" " %>>OTHER</option>
+                            </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="university">12th year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="university" name="year12" type="text" maxlength="4" minlength="4" value="<%= user.year12 %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_subject">Graduation Year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_subject" name="graduationYear" type="text" maxlength="4" minlength="4" value="<%= user.graduationYear %>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_subject">Graduation University
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_subject" name="graduationUniversity" type="text" value="<%= user.graduationUniversity %>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_subject">Graduation Course
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_subject" name="graduationCourse" type="text" value="<%= user.graduationCourse %>">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="tenth_subject">Received any specialized coaching if any?
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_subject" name="coaching" type="text" value="<%= user.coaching %>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="aaaa">Any Member in armed forces military/paramilatary/police
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="aaaa" name="forceMember">
+                                    <option value="NO" <%= (user.forceMember === "NO")?"selected":" " %>>No</option>
+                                    <option value="YES" id="CBSE" <%= (user.forceMember === "YES")?"selected":" " %>>Yes</option>
+                                </select>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="aaaa1">Any Member in Government Services
+            &nbsp;
+        </label>
+                                                    <div>
+                                                        <select class="form-control" id="aaaa1" name="governmentMember">
+                                        <option value="NO" <%= (user.governmentMember === "NO")?"selected":" " %>>No</option>
+                                    <option value="YES" id="CBSE" <%= (user.governmentMember === "YES")?"selected":" " %>>Yes</option>
+                                    </select>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="a1aaa1">Family Background others
+                &nbsp;
+            </label>
+                                                        <div>
+                                                            <select class="form-control" id="a1aaa1" name="other">
+                                            <option value="PRIVATE" <%= (user.other === "PRIVATE")?"selected":" " %>>PRIVATE</option>
+                                            <option value="BUSINESS" <%= (user.other === "BUSINESS")?"selected":" " %> >BUSINESS</option>
+                                            <option value="FARMER" <%= (user.other === "FARMER")?"selected":" " %> >FARMER</option>
+                                        </select>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="photo">Student Photo
+        &nbsp;
+    </label>
+                                                        <div>
+                                                            <input class="form-control" id="photo" name="photo" type="file">
+                                                            <% if(user.studentPhotoUrl && user.studentPhotoUrl !== ' ' ) { %>
+                                                                <a href="/<%= user.studentPhotoUrl %>" id="a">View</a>
+                                                                <% } %>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="form-group">
+                                                        <div>
+                                                            <input type="submit" class="btn btn-primary" style="width: 100%;" value="Save" />
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="form-group">
+                                                        <div>
+                                                            <a href="/admin/survey/delete/<%= (user._id) %>" class="btn btn-primary btn-danger" style="width: 100%;">Delete</a>
+                                                        </div>
+                                                    </div>
+                                        </form>
+                                        </div>
+                                        </div>
+                            </div>
+                </section>
+                </div>
+
+                <footer class="main-footer">
+                    <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+                    <div class="pull-right hidden-xs">
+                    </div>
+                </footer>
+
+
+                </div>
+                <!-- ./wrapper -->
+
+                <%- include('./include-admin/scripts.ejs') %>
+                    <script>
+                        document.getElementById('navsurvey').classList.add('active');
+                    </script>
+</body>
+
+</html>

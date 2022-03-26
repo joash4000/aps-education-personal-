@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Arrow Achievers
+    </title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Porto - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                                <span class="page-header-title-border visible" style="width: 43.25px;"></span>
+                                <h1 data-title-border="">Our Faculties</h1>
+                            </div>
+                            <!-- <div class="col-lg-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <div class="row ">
+                        <div class="col">
+
+                            <div class="row text-center">
+                                <div class="col-md-9 mx-md-auto">
+                                    <div class="overflow-hidden mb-3">
+                                        <h1 class="word-rotator slide font-weight-bold text-8 mb-0 appear-animation" data-appear-animation="maskUp">
+                                            <span>Our Faculties</span>
+                                        </h1>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="800">
+                                <% members.forEach(e =>{%>
+                                    <div class="col-lg-4">
+                                        <div class="faculity">
+                                            <img src="/<%= e.photoUrl %>" class="img-fluid rounded-circle mb-0" style="width: 120px; height: 120px;" alt="">
+                                            <h4>
+                                                <%= e.name %>
+                                            </h4>
+                                            <p>
+                                                <%= e.role %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <%})%>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+
+
+    </div>
+    <%- include('../includes/footer_bottom.ejs') %>
+        </div>
+
+        <!-- Vendor -->
+        <%- include('../includes/scripts.ejs') %>
+            <script>
+                $(document).ready(function() {
+                    $('#navAbout').addClass(' active');
+                });
+            </script>
+
+</body>
+
+</html>

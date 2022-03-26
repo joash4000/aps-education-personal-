@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Arrow Achievers
+    </title>
+
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm" style="background: url(/public/img/background/ssb.jpg); background-size: cover; height: 400px; background-repeat: no-repeat;">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 order-2 order-md-1 align-self-center backgroundHeading">
+                                <h1 data-title-border>SSB/Interviews</h1>
+                            </div>
+                            <!-- <div class="col-md-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container pb-1">
+
+                    <div class="row pt-4">
+                        <div class="col-md-9">
+                            <div class="overflow-hidden mb-3">
+                                <h2 class="word-rotator slide font-weight-bold text-8 mb-0 appear-animation" data-appear-animation="maskUp">
+                                    <a href="/registration-form" class="btn btn-modern btn-primary mt-1" style="font-size:14px;float:right;">Join Course</a> SSB/ Interviews
+
+                                </h2>
+                            </div>
+
+                            <div class="overflow-hidden">
+                                <p style="font-size:1rem; letter-spacing:inherit;" class="lead mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="250">
+                                    Services Selection Board gauges the caliber , strengths and personality of the aspirants for Defence Forces ,through screening tests, psychological tests, group situation tasks and personal interviews.
+                                </p>
+                                <br/>
+                                <p><b>Age:</b> 18 to 23 Years</p>
+                                <p><b>Eligibility Criteria:</b> Unmarried male candidates who have completed their Class 12 or equivalent examination from a well-recognized board can apply for the exam. The appearing candidates can also apply. Those seeking
+                                    for Indian Navy and Air Force must have passed their 12th/appearing (10+2 pattern) from a recognized board or University with Physics and Mathematics as a compulsory subject. Candidates must be physically fit ccording
+                                    to the physical standards for NDA exam. Girls are not allowed for the NDA ntrance examination.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 rightSideLink">
+                            <h2 class="word-rotator slide font-weight-bold text-8 appear-animation mb-3" data-appear-animation="maskUp"><a href="/our_programs">All Courses</a></h2>
+                            <ul>
+                                <li><a href="/nda">NDA</a></li>
+                                <li><a href="/cpo">CPO</a></li>
+                                <li><a href="/afcat">AFCAT</a></li>
+                                <li><a href="/cds">CDS/OTA</a></li>
+                                <li><a href="/dps">Delhi Police</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <section class="section section-default border-0 my-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="750">
+                    <div class="container">
+
+                        <div class="row align-items-center">
+
+                            <div class="col-md-12">
+                                <div class="overflow-hidden mb-2">
+                                    <h2 class="text-color-dark font-weight-normal text-5 mb-0 pt-0 mt-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1200"><strong class="font-weight-bold">Other Information</strong></h2>
+                                </div>
+                                <p>
+                                    We give our cadets the great prospect to join these revered forces immediately after class 12th Board Exams. If you want to crack the onerous NDA Exams, you ought to make an appropriate and timely decision of joining the best coaching institute for guidance
+                                    and training in the most favourable environment. We wish to step in, to help you to achieve your goal by providing you the radiant mentorship of highly experienced faculty with the defence background. We provide easy
+                                    to comprehend study material for all subjects-Mathematics, English, General Knowledge , Chemistry and Physics. Innovative teaching techniques and most up-to-date teaching aids, supplement the training sessions. With
+                                    such conscientious preparedness, the success rate for cracking the NDA Exams naturally tends to be very high.
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+            <%- include('../includes/footer_bottom.ejs') %>
+    </div>
+
+    <!-- Vendor -->
+    <%- include('../includes/scripts.ejs') %>
+        <script>
+            $(document).ready(function() {
+                $('#navCourses').addClass(' active');
+            });
+        </script>
+
+</body>
+
+</html>

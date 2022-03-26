@@ -1,0 +1,21 @@
+{
+    "name": "Arrow Achievers",
+    "short_name": "Arrow Achievers",
+    "icons": [{
+        "src": "./public/img/logop.png",
+        "type": "image/png",
+        "sizes": "48x58"
+    }, {
+        "src": "./public/img/logo1.png",
+        "type": "image/png",
+        "sizes": "144x144"
+    }],
+    "start_url": "/",
+    "scope": ".",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#fff",
+    "theme_color": "#000",
+    "dir": "ltr",
+    "lang": "en-US"
+}

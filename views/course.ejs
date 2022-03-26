@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./include-admin/style.ejs') %>
+        <style>
+            @media (min-width: 768px) {
+                .form-horizontal .control-label {
+                    padding-top: 7px;
+                    margin-bottom: 0;
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        </style>
+</head>
+
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+
+        <%- include('./include-admin/header.ejs') %>
+            <!-- Content Wrapper. Contains page content color white-->
+            <div class="content-wrapper">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="/admin/course/">List</a>
+                    </li>
+                    <li>
+                        <a href="/admin/course/create/">Create</a>
+                    </li>
+                    <li>
+                        <a href="/admin/course/edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="/admin/course/csv">Export</a>
+                    </li>
+                </ul>
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Course</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Course Name</th>
+                                                <th>Course Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% if(!courses) {%>
+                                                <tr>
+                                                    <td>
+                                                        No courses
+                                                    </td>
+                                                </tr>
+                                                <%} else { %>
+                                                    <% courses.forEach(u => { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= u.courseName %>
+                                                            </td>
+                                                            <td>
+                                                                <%= u.coursePrice %>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </section>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <!-- / Content Wrapper. color white -->
+
+            <!-- Control Sidebar -->
+
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+                <div class="pull-right hidden-xs">
+                </div>
+            </footer>
+
+
+    </div>
+    <!-- ./wrapper -->
+
+
+    <%- include('./include-admin/scripts.ejs') %>
+        <script type="text/javascript">
+            $(function() {
+                $("#example1").dataTable();
+                $('#example2').dataTable({
+                    "bPaginate": true,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+            });
+        </script>
+        <script>
+            document.getElementById('navcourse').classList.add('active');
+        </script>
+</body>
+
+</html>

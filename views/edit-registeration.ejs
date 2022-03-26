@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./include-admin/style.ejs') %>
+        <style>
+            label {
+                display: block;
+                text-align: left;
+            }
+            
+            #a {
+                display: block;
+                text-align: left;
+            }
+        </style>
+</head>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+        <%- include('./include-admin/header.ejs') %>
+            <div class="content-wrapper">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="/admin/registeration/">List</a>
+                    </li>
+                    <li>
+                        <a href="/admin/registeration/create">Create</a>
+                    </li>
+                    <li class="active">
+                        <a href="/admin/registeration/edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="/admin/registeration/csv">Export</a>
+                    </li>
+                </ul>
+                <section class="container-fluid">
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="text-center col-md-8 col-md-offset-2">
+                            <!-- general form elements -->
+                            <div class="box box-primary" style="background-color: #ebeff3;">
+                                <% if (errorMessage) { %>
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                        <%= errorMessage %>
+                                    </div>
+                                    <% } %>
+                                        <form action="/admin/registeration/edit/true" method="POST" style="padding: 10px;" enctype="multipart/form-data">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <div class="form-group">
+                                                <label for="courses">Course<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" data-role="select2" required id="departments" multiple name="courses">
+                                    <% courses.forEach(c => { %>
+                                        <option value="<%= c.courseName %>" 
+                                            <% if(user.courses.includes(c.courseName)) { %>
+                                            selected
+                                            <% } %>
+                                            ><%= c.courseName %> (INR <%= c.coursePrice %>)</option>
+                                    <% }) %>
+                                </select>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <label for="college">College
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" id="college" name="college">
+                                    <% colleges.forEach(e => { %>
+                                        <option value="<%= e.collegeName %>"
+                                            <% if(user.college === (e.college)) { %>
+                                                selected
+                                                <% } %>
+                                            ><%= e.collegeName %></option>
+
+                                    <% }) %>
+                                </select>
+
+
+                                                </div>
+
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label for="name">Name<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="name" name="name" type="text" required value="<%= user.name %>">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="father_name">Father Name
+        
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="father_name" name="fatherName" required type="text" value="<%= user.fatherName %>">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="father_occupation">Father Occupation
+        
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="father_occupation" name="fatherOccupation" required type="text" value="<%= user.fatherOccupation %>">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="date-of-birth">Date Of Birth<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="date_of_birth" name="dob" required type="date" value="<%=(dob) %>">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="category">Category<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" required id="category" name="category">
+                                    <option value="NONE" <%= (user.category === "NONE")?"selected":" " %>> </option>
+                                    <option selected value="GEN" <%= (user.category === "GEN")?"selected":" " %>>GEN</option>
+                                    <option value="OBC" <%= (user.category === "OBC")?"selected":" " %>>OBC</option>
+                                    <option value="SC" <%= (user.category === "SC")?"selected":" " %>>SC</option>
+                                    <option value="ST" <%= (user.category === "ST")?"selected":" " %>>ST</option>
+                                </select>
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email">Email
+        
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="email" name="email" required type="text" value="<%= user.email %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="address">Address<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" required id="address" name="address" type="text" value="<%= user.address %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="state">State<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" id="state" name="state" required>
+                                    <option value="NONE" <%= (user.state === "NONE")?"selected":"" %>> </option>
+                                    <option value="ANDHRA PRADESH" <%= (user.state === "ANDHRA PRADESH")?"selected":" " %>>Andhra Pradesh</option>
+                                    <option value="ARUNACHAL PRADESH" <%= (user.state === "ARUNACHAL PRADESH")?"selected":" " %>>Arunachal Pradesh</option>
+                                    <option value="ASSAM" <%= (user.state === "ASSAM")?"selected":" " %>>Assam</option>
+                                    <option value="BIHAR" <%= (user.state === "BIHAR")?"selected":" " %>>Bihar</option>
+                                    <option value="CHHATTISGARH" <%= (user.state === "CHHATTISGARH")?"selected":" " %>>Chhattisgarh</option>
+                                    <option value="GOA" <%= (user.state === "GOA")?"selected":" " %>>Goa</option>
+                                    <option value="GUJARAT" <%= (user.state === "GUJARAT")?"selected":" " %>>Gujarat</option>
+                                    <option value="HARAYANA" <%= (user.state === "HARAYANA")?"selected":" " %>>Haryana</option>
+                                    <option value="HIMACHAL PRADESH" <%= (user.state === "HIMACHAL PRADESH")?"selected":" " %>>Himachal Pradesh</option>
+                                    <option value="JAMMU AND KASHMIR" <%= (user.state === "JAMMU AND KASHMIR")?"selected":" " %>>Jammu and Kashmir</option>
+                                    <option value="JHARKHAND" <%= (user.state === "JHARKHAND")?"selected":" " %>>Jharkhand</option>
+                                    <option value="KARANATAKA" <%= (user.state === "KARANATAKA")?"selected":" " %>>Karnataka</option>
+                                    <option value="KERELA" <%= (user.state === "KERELA")?"selected":" " %>>Kerala</option>
+                                    <option value="MADHYA PRADESH" <%= (user.state === "MADHYA PRADESH")?"selected":" " %>>Madhya Pradesh</option>
+                                    <option value="MAHARASHTRA" <%= (user.state === "MAHARASHTRA")?"selected":" " %>>Maharashtra</option>
+                                    <option value="MANIPUR" <%= (user.state === "MANIPUR")?"selected":" " %>>Manipur</option>
+                                    <option value="MEGHALAYA" <%= (user.state === "MEGHALAYA")?"selected":" " %>>Meghalaya </option>
+                                    <option value="MIZORAM" <%= (user.state === "MIZORAM")?"selected":" " %>>Mizoram </option>
+                                    <option value="NAGALAND" <%= (user.state === "NAGALAND")?"selected":" " %>>Nagaland</option>
+                                    <option value="TELENGANA" <%= (user.state === "TELENGANA")?"selected":" " %>>Telangana</option>
+                                    <option value="TRIPURA" <%= (user.state === "TRIPURA")?"selected":" " %>>Tripura</option>
+                                    <option value="UTTAR PRADESH" <%= (user.state === "UTTAR PRADESH")?"selected":" " %>>Uttar Pradesh</option>
+                                    <option value="UTTARAKHAND" <%= (user.state === "UTTARAKHAND")?"selected":" " %>>Uttarakhand</option>
+                                    <option value="WEST BENGAL" <%= (user.state === "WEST BENGAL")?"selected":" " %>>West Bengal</option>
+                                </select>
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="dist">District<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="dist" required name="district" type="text" value="<%= user.district %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="pincode">Pincode<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="pincode" name="pincode" type="number" required value="<%= user.pincode %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="contact_no">Contact No.
+        
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="contact_no" name="contact" required type="text" maxlength="10" minlength="10" value="<%= user.contact %>">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="cotact_no">Whatsapp No.    </label>
+                                                <div>
+                                                    <input class="form-control" id="cotact_no" name="whatsapp" type="text" maxlength="10" minlength="10" value="<%= user.whatsapp %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="marital_status">Marital Status<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" id="marital_status" required name="maritalStatus">
+                                    <option value="NONE" <%= (user.maritalStatus === "NONE")?"selected":" " %>> </option>
+                                    <option value="UNMARRIED" <%= (user.maritalStatus === "UNMARRIED")?"selected":" " %>>Unmarried</option>
+                                    <option value="MARRIED" <%= (user.maritalStatus === "MARRIED")?"selected":" " %>>Married</option>
+                                    <option value="OTHER" <%= (user.maritalStatus === "OTHER")?"selected":" " %>>Other</option></select>
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="height">Height<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="height" name="height" type="number" value="<%= user.height %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="weight">Weight<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="weight" name="weight" type="number" required value="<%= user.weight %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <!-- <div class="form-group">
+                                                <label for="paid">Paid
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" id="paid" name="paid">
+                                    <option value="NONE" <%= (user.paid === "NONE")?"selected":" " %>> </option>
+                                    <option value="UNPAID" <%= (user.paid === "UNPAID")?"selected":" " %>>Not Paid</option>
+                                    <option value="PAID" <%= (user.paid === "PAID")?"selected":" " %>>Paid</option></select>
+
+
+                                                </div>
+
+                                            </div> -->
+
+                                            <div class="form-group">
+                                                <label for="blood_group">Blood Group
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" id="blood_group" name="bloodGroup">
+                                    <option value="NONE" <%= (user.bloodGroup === "NONE")?"selected":" " %>> </option>
+                                    <option value="A+" <%= (user.bloodGroup === "A+")?"selected":" " %>>A+</option>
+                                    <option value="B+" <%= (user.bloodGroup === "B+")?"selected":" " %>>B+</option>
+                                    <option value="AB+" <%= (user.bloodGroup === "AB+")?"selected":" " %>>AB+</option>
+                                    <option value="O+" <%= (user.bloodGroup === "O+")?"selected":" " %>>O+</option>
+                                    <option value="A-" <%= (user.bloodGroup === "A-")?"selected":" " %>>A-</option>
+                                    <option value="B-" <%= (user.bloodGroup === "B-")?"selected":" " %>>B-</option>
+                                    <option value="AB-" <%= (user.bloodGroup === "AB-")?"selected":" " %>>AB-</option>
+                                    <option value="O-"<%= (user.bloodGroup === "O-")?"selected":" " %>>O-</option>
+                                </select>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_university">Tenth Board
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="tenth_year" name="tenthBoard">
+            <option value="NONE" <%= (user.tenthBoard === "NONE")?"selected":" " %>>Select Board</option>
+            <option value="CBSE" id="CBSE" <%= (user.tenthBoard === "CBSE")?"selected":" " %>>CBSE</option>
+            <option value="ICSE" id="ICSE" <%= (user.tenthBoard === "ICSE")?"selected":" " %>>ICSE</option>
+            <option value="UP BOARD" id="UP BOARD" <%= (user.tenthBoard === "UP BOARD")?"selected":" " %>>UP BOARD</option>
+            <option value="OTHER" id="OTHER" <%= (user.tenthBoard === "OTHER")?"selected":" " %>>OTHER</option>
+        </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_year">Tenth Year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_year" name="tenthYear" type="text" maxlength="4" minlength="4" value="<%= user.tenthYear %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_subject">Tenth Subject
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_subject" name="tenthSubject" type="text" value="<%= user.tenthSubject %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_percentage">Tenth Percentage
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_percentage" name="tenthPercentage" type="text" value="<%= user.tenthPercentage %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_university1">Tewelve Board
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="tenth_university1" name="twelveBoard">
+            <option value="NONE" <%= (user.twelveBoard === "NONE")?"selected":" " %> >Select Board</option>
+            <option value="CBSE" id="CBSE" <%= (user.twelveBoard === "CBSE")?"selected":" " %> >CBSE</option>
+            <option value="ISC" id="ICSE" <%= (user.twelveBoard === "ISC")?"selected":" " %> >ISC</option>
+            <option value="UP BOARD" id="UP BOARD" <%= (user.twelveBoard === "UP BOARD")?"selected":" " %> >UP BOARD</option>
+            <option value="OTHER" id="OTHER" <%= (user.twelveBoard === "OTHER")?"selected":" " %>>OTHER</option>
+        </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="twelve_year">Twelve Year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_year" name="twelveYear" type="text" maxlength="4" minlength="4" value="<%= user.twelveYear %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="twelve_subject">Twelve Subject
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_subject" name="twelveSubject" type="text" value="<%= user.twelveSubject %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="twelve_percentage">Twelve Percentage
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_percentage" name="twelvePercentage" type="text" value="<%= user.twelvePercentage %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_year">10 + 2 Aspiring Year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_year" name="aspiringYear" type="text" maxlength="4" minlength="4" value="<%= user.aspiringYear %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_university1">10 + 2 Aspiring Board
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="tenth_university1" name="aspiringBoard">
+                                    <option value="NONE" <%= (user.aspiringBoard === "NONE")?"selected":" " %> >Select Board</option>
+                                    <option value="CBSE" id="CBSE" <%= (user.aspiringBoard === "CBSE")?"selected":" " %> >CBSE</option>
+                                    <option value="ISC" id="ICSE" <%= (user.aspiringBoard === "ISC")?"selected":" " %> >ISC</option>
+                                    <option value="UP BOARD" id="UP BOARD" <%= (user.aspiringBoard === "UP BOARD")?"selected":" " %> >UP BOARD</option>
+                                    <option value="OTHER" id="OTHER" <%= (user.aspiringBoard === "OTHER")?"selected":" " %>>OTHER</option>
+        </select>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_subject">10 + 2 Aspiring Subject
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_subject" name="aspiringSubject" type="text" value="<%= user.aspiringSubject %>">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="graduation_university">Graduation University
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_university" name="graduationUniversity" type="text" value="<%= user.graduationUniversity %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_year">Graduation Year
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="graduation_year" name="graduationYear" type="text" maxlength="4" minlength="4" value="<%= user.graduationYear %>">
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_subject">Graduation Subject
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_subject" name="graduationSubject" type="text" value="<%= user.graduationSubject %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_percentage">Graduation Percentage
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_percentage" name="graduationPercentage" type="text" value="<%= user.graduationPercentage %>">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="document_idcard">ID Proof<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select name="idType" id="document_idcard" required class="form-control">
+                                    <option value="AADHAR CARD" <%= (user.idType === "AADHAR CARD")?"selected":" " %>>AADHAR CARD</option>
+                                    <option value="PAN CARD" <%= (user.idType === "PAN CARD")?"selected":" " %> >PAN CARD</option>
+                                    <option value="VOTER ID" <%= (user.idType === "VOTER ID")?"selected":" " %> >VOTER ID</option>
+                                </select>
+                                                    <input class="form-control" id="document_idcard" name="document_idcard" type="file">
+                                                    <% if(user.idProofUrl && user.idProofUrl !== ' ' ) { %>
+                                                        <a href="/<%= user.idProofUrl %>" id="a">View</a>
+                                                        <% } %>
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_marksheet">Tenth Marksheet
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_marksheet" name="tenth_marksheet" type="file" value="">
+                                                    <% if(user.tenthMarksheetUrl && user.tenthMarksheetUrl !== ' ') { %>
+                                                        <a href="/<%= user.tenthMarksheetUrl %>" id="a">View</a>
+                                                        <% } %>
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="twelve_marksheet">Twelve Marksheet
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_marksheet" name="twelve_marksheet" type="file" value="">
+                                                    <% if(user.twelveMarksheetUrl && user.twelveMarksheetUrl !== ' ' ) { %>
+                                                        <a href="/<%= user.twelveMarksheetUrl %>" id="a">View</a>
+                                                        <% } %>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="twelve_markshee1t">10 + 2 Aspiring Document
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_markshee1t" name="aspiring" type="file" value="">
+                                                    <% if(user.aspiringUrl && user.aspiringUrl !== ' ' ) { %>
+                                                        <a href="/<%= user.aspiringUrl %>" id="a">View</a>
+                                                        <% } %>
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_document">University Document
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_document" name="graduation_document" type="file" value="">
+                                                    <% if(user.universityDocumentUrl && user.universityDocumentUrl !== ' ' ) { %>
+                                                        <a href="/<%= user.universityDocumentUrl %>" id="a">View</a>
+                                                        <% } %>
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="photo">Student Photo
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="photo" name="photo" type="file">
+                                                    <% if(user.studentPhotoUrl && user.studentPhotoUrl !== ' ') { %>
+                                                        <a href="/<%= user.studentPhotoUrl %>" id="a">View</a>
+                                                        <% } %>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <input type="hidden" name="_id" value="<%= (user._id) %>">
+
+                                            <hr>
+                                            <div class="form-group">
+                                                <div>
+                                                    <input type="submit" class="btn btn-primary" style="width: 100%;" value="Save" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div>
+                                                    <a href="/admin/registeration/delete/<%= (user._id) %>" class="btn btn-primary btn-danger" style="width: 100%;">Delete</a>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+
+            </div>
+            <!-- / Content Wrapper. color white -->
+
+
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+                <div class="pull-right hidden-xs">
+                </div>
+            </footer>
+
+
+    </div>
+    <!-- ./wrapper -->
+
+
+
+    <%- include('./include-admin/scripts.ejs') %>
+        <script>
+            document.getElementById('navreg').classList.add('active');
+        </script>
+</body>
+
+</html>

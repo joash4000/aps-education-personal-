@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrations - APS Dashboard</title>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./include-admin/style.ejs') %>
+        <style>
+            label {
+                display: block;
+                text-align: left;
+            }
+        </style>
+</head>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <!-- TOP NAVBAR -->
+    <div class="wrapper">
+        <%- include('./include-admin/header.ejs') %>
+            <div class="content-wrapper">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="/admin/registeration/">List</a>
+                    </li>
+                    <li class="active">
+                        <a href="/admin/registeration/create">Create</a>
+                    </li>
+                    <li>
+                        <a href="/admin/registeration/edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="/admin/registeration/csv">Export</a>
+                    </li>
+                </ul>
+                <section class="container-fluid">
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="text-center col-md-8 col-md-offset-2">
+                            <!-- general form elements -->
+                            <div class="box box-primary" style="background-color: #ebeff3;">
+                                <% if (error_msg.length>0) { %>
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                        <%= error_msg %>
+                                    </div>
+                                    <% } %>
+
+
+                                        <form role="form" action="/admin/registeration/create" style="padding: 10px;" method="POST" enctype="multipart/form-data">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <div class="form-group">
+                                                <label for="email">Email<strong style="color: red">&#42;</strong>
+    </label>
+
+                                                <input class="form-control" id="email" name="email" required type="email" value="">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="courses">Course<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <select class="form-control" data-role="select2" required id="departments" multiple name="courses">
+                                    <% courses.forEach(c => { %>
+                                        <option value="<%= c.courseName %>" id="<%= c.courseName %>"><%= c.courseName %> (INR <%= c.coursePrice %>)</option>
+                                    <% }) %>
+                                </select>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <label for="college">College
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="college" name="college">
+                                    <% colleges.forEach(e => { %>
+                                        <option value="<%= e.collegeName %>" id="<%= e.collegeName %>"><%= e.collegeName %></option>
+                                    <% }) %>
+                                </select>
+                                                </div>
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label for="name">Name<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="name" name="name" type="text" required value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="father_name">Father Name
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="father_name" name="fatherName" required type="text" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="father_occupation">Father Occupation       
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="father_occupation" name="fatherOccupation" required type="text" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="date-of-birth">Date Of Birth<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="date_of_birth" name="dob" type="date" required value="new Date()">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="category">Category<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="category" name="category" required>
+                                    <option value="NONE"> </option>
+                                    <option selected value="GEN">GEN</option>
+                                    <option value="OBC">OBC</option>
+                                    <option value="SC">SC</option>
+                                    <option value="ST">ST</option>
+                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address">Address<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="address" name="address" type="text" required value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="state">State<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" data-allow-blank="1" required data-role="select2" id="state" name="state">
+                                    <option value="NONE"> </option>
+                                    <option value="ANDHRA PRADESH">Andhra Pradesh</option>
+                                    <option value="ARUNACHAL PRADESH">Arunachal Pradesh</option>
+                                    <option value="ASSAM">Assam</option>
+                                    <option value="BIHAR">Bihar</option>
+                                    <option value="CHHATTISGARH">Chhattisgarh</option>
+                                    <option value="GOA">Goa</option>
+                                    <option value="GUJARAT">Gujarat</option>
+                                    <option value="HARAYANA">Haryana</option>
+                                    <option value="HIMACHAL PRADESH">Himachal Pradesh</option>
+                                    <option value="JAMMU AND KASHMIR">Jammu and Kashmir</option>
+                                    <option value="JHARKHAND">Jharkhand</option>
+                                    <option value="KARNATAKA">Karnataka</option>
+                                    <option value="KERALA">Kerala</option>
+                                    <option value="MADHYA PRADESH">Madhya Pradesh</option>
+                                    <option value="MAHARASHTRA">Maharashtra</option>
+                                    <option value="MANIPUR">Manipur</option>
+                                    <option value="MEGHALAYA">Meghalaya </option>
+                                    <option value="MIZORAM">Mizoram </option>
+                                    <option value="NAGALAND">Nagaland</option>
+                                    <option value="ODISHA">Odisha</option>
+                                    <option value="PUNJAB">Punjab</option>
+                                    <option value="RAJASTHAN">Rajasthan</option>
+                                    <option value="SIKKIM">Sikkim</option>
+                                    <option value="TAMIL NADU">Tamil Nadu</option>
+                                    <option value="TELANGANA">Telangana</option>
+                                    <option value="TRIPURA">Tripura</option>
+                                    <option value="UTTAR PRADESH">Uttar Pradesh</option>
+                                    <option value="UTTARAKHAND">Uttarakhand</option>
+                                    <option value="WEST BENGAL">West Bengal</option></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dist">District<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" required id="dist" name="district" type="text" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pincode">Pincode<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="pincode" name="pincode" type="number" min="100000" max="999999" required value="0">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="contact_no">Contact No.
+          <strong style="color: red">&#42;</strong>
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="contact_no" name="contact" required type="text" maxlength="10" minlength="10" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cotact_no">Whatsapp No.    </label>
+                                                <div>
+                                                    <input class="form-control" id="cotact_no" name="whatsapp" type="text" maxlength="10" minlength="10" value="">
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="marital_status">Marital Status<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" data-allow-blank="1" required data-role="select2" id="marital_status" name="maritalStatus"><option value="NONE"> </option><option value="UNMARRIED">Unmarried</option><option value="MARRIED">Married</option><option value="OTHER">Other</option></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="height">Height<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="height" name="height" type="number" required value="0.0">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="weight">Weight<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="weight" name="weight" type="number" required value="0.0">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <label for="paid">Paid
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" data-allow-blank="1" data-role="select2" id="paid" name="paid">
+                                    <option value="NONE"> </option>
+                                    <option value="UNPAID">Not Paid</option>
+                                    <option value="PAID">Paid</option></select>
+                                                </div>
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label for="blood_group">Blood Group
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="blood_group" name="bloodGroup">
+                                    <option value="NONE">Select Blood Group</option>
+                                    <option value="A+" id="A+">A+</option>
+                                    <option value="B+" id="B+">B+</option>
+                                    <option value="AB+" id="AB+">AB+</option>
+                                    <option value="O+" id="O+">O+</option>
+                                    <option value="A-" id="A-">A-</option>
+                                    <option value="B-" id="B-">B-</option>
+                                    <option value="AB-" id="AB-">AB-</option>
+                                    <option value="O-" id="O-">O-</option>
+                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_university">Tenth Board
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="tenth_year" name="tenthBoard">
+            <option value="__None">Select Board</option>
+            <option value="CBSE" id="CBSE">CBSE</option>
+            <option value="ICSE" id="ICSE">ICSE</option>
+            <option value="UP BOARD" id="UP BOARD">UP BOARD</option>
+            <option value="OTHER" id="OTHER">OTHER</option>
+        </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_year">Tenth Year
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="tenth_year" name="tenthYear" type="text" minlength="4" maxlength="4" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_subject">Tenth Subject
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="tenth_subject" name="tenthSubject" type="text" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_percentage">Tenth Percentage
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="tenth_percentage" name="tenthPercentage" type="text" value="0.0">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tenth_university1">Tewelve Board
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="tenth_university1" name="twelveBoard">
+            <option value="__None">Select Board</option>
+            <option value="CBSE" id="CBSE">CBSE</option>
+            <option value="ISC" id="ICSE">ISC</option>
+            <option value="UP BOARD" id="UP BOARD">UP BOARD</option>
+            <option value="OTHER" id="OTHER">OTHER</option>
+        </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="twelve_year">Twelve Year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_year" name="twelveYear" type="text" maxlength="4" minlength="4" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="twelve_subject">Twelve Subject
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_subject" name="twelveSubject" type="text" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="twelve_percentage">Twelve Percentage
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_percentage" name="twelvePercentage" type="text" value="0.0">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_year">10 + 2 Aspiring Year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_year" name="aspiringYear" type="text" maxlength="4" minlength="4" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_university1">10 + 2 Aspiring Board
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select class="form-control" id="tenth_university1" name="aspiringBoard">
+            <option value="__None">Select Board</option>
+            <option value="CBSE" id="CBSE">CBSE</option>
+            <option value="ISC" id="ICSE">ISC</option>
+            <option value="UP BOARD" id="UP BOARD">UP BOARD</option>
+            <option value="OTHER" id="OTHER">OTHER</option>
+        </select>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_subject">10 + 2 Aspiring Subject
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_subject" name="aspiringSubject" type="text" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_university">Graduation University
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_university" name="graduationUniversity" type="text" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_year">Graduation Year
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_year" name="graduationYear" type="text" maxlength="4" minlength="4" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_subject">Graduation Subject
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_subject" name="graduationSubject" type="text" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_percentage">Graduation Percentage
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_percentage" name="graduationPercentage" type="text" value="0.0">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="document_idcard">ID Proof<strong style="color: red">&#42;</strong>
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <select name="idType" id="document_idcard" class="form-control" required>
+            <option value="AADHAR CARD">AADHAR CARD</option>
+            <option value="PAN CARD">PAN CARD</option>
+            <option value="VOTER ID">VOTER ID</option>
+        </select>
+                                                </div>
+                                                <div>
+
+                                                    <input class="form-control" id="document_idcard" required name="document_idcard" type="file">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="tenth_marksheet">Tenth Marksheet
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="tenth_marksheet" name="tenth_marksheet" type="file" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="twelve_marksheet">Twelve Marksheet
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_marksheet" name="twelve_marksheet" type="file" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="twelve_markshee1t">10 + 2 Aspiring Document
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="twelve_markshee1t" name="aspiring" type="file" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="graduation_document">University Document
+        &nbsp;
+    </label>
+                                                <div>
+
+                                                    <input class="form-control" id="graduation_document" name="graduation_document" type="file" value="">
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+                                            <div class="form-group">
+                                                <label for="photo">Student Photo
+        &nbsp;
+    </label>
+                                                <div>
+                                                    <input class="form-control" id="photo" name="photo" type="file">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group">
+                                                <div>
+                                                    <input type="submit" class="btn btn-primary" style="width: 100%;" value="Save" />
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- / Content Wrapper. color white -->
+
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2020 <a>SoftEra Inc.</a></strong> - All rights reserved.
+                <div class="pull-right hidden-xs">
+                </div>
+            </footer>
+
+
+    </div>
+    <!-- ./wrapper -->
+
+
+
+
+    <%- include('./include-admin/scripts.ejs') %>
+        <script>
+            document.getElementById('email').addEventListener('keyup', () => {
+                setTimeout(() => {
+                    const email = document.getElementById('email').value;
+                    if (email.includes('@')) {
+                        fetch('/survey/find/' + email)
+                            .then(data => {
+                                return data.json()
+                            }).then(jsonData => {
+                                document.getElementById('name').value = jsonData.user.name;
+                                document.getElementById('father_name').value = jsonData.user.fatherName;
+                                document.getElementById('date_of_birth').value = jsonData.user.dob;
+                                document.getElementById('address').value = jsonData.user.address;
+                                document.getElementById('dist').value = jsonData.user.district;
+                                document.getElementById('contact_no').value = jsonData.user.contact;
+                                document.getElementById('height').value = jsonData.user.height;
+                                document.getElementById('weight').value = jsonData.user.weight;
+                                document.getElementById(jsonData.user.college).selected = "true";
+                                document.getElementById(jsonData.user.bloodGroup).selected = "true";
+                            })
+                    }
+                }, 1000);
+            })
+        </script>
+        <script>
+            document.getElementById('navreg').classList.add('active');
+        </script>
+
+</body>
+
+</html>

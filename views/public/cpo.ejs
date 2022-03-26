@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Arrow Achievers</title>
+
+
+    <%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div class="body">
+        <%- include('../includes/header.ejs') %>
+            <div class="divider130"></div>
+            <div role="main" class="main">
+                <section class="page-header page-header-classic page-header-sm" style="background: url(/public/img/background/cpo.jpg); background-size: cover; height: 400px; background-repeat: no-repeat;">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 order-2 order-md-1 align-self-center backgroundHeading">
+                                <h1 data-title-border>CPO</h1>
+                            </div>
+                            <!-- <div class="col-md-4 order-1 order-md-2 align-self-center">
+								<ul class="breadcrumb d-block text-md-right">
+									<li><a href="#">Home</a></li>
+									<li class="active">Pages</li>
+								</ul>
+							</div> -->
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container pb-1">
+
+                    <div class="row pt-4">
+                        <div class="col-md-9">
+                            <div class="overflow-hidden mb-3">
+                                <h2 class="word-rotator slide font-weight-bold text-8 mb-0 appear-animation" data-appear-animation="maskUp">
+                                    <a href="/registration-form" class="btn btn-modern btn-primary mt-1" style="font-size:14px;float:right;">Join Course</a> CPO
+
+                                </h2>
+                            </div>
+
+                            <div class="overflow-hidden">
+                                <p style="font-size:1rem; letter-spacing:inherit;" class="lead mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="250">
+                                    Central Police Organization (CPO) Exam is a National Level Examination conducted by the Staff Selection Commission (SSC) for the recruitment of candidates for various posts in Police Force. The SSC CPO Exam is a splendid prospect for those who wish to
+                                    join Delhi Police and some of the best paramilitary forces of India (CRPF, BSF, CISF, ITBP and SSB) as Sub-Inspectors and Assistant Sub-Inspector (Executive) in CISF.
+                                </p>
+                                <br/>
+                                <p><b>Age:</b> 20 - 25 Years</p>
+                                <p><b>Eligibility Criteria:</b> Bachelor’s Degree from a recognized university or equivalent.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 rightSideLink">
+                            <h2 class="word-rotator slide font-weight-bold text-8 appear-animation mb-3" data-appear-animation="maskUp"><a href="our_programs.php">All Courses</a></h2>
+                            <ul>
+                                <li><a href="/nda">NDA</a></li>
+                                <li><a href="/ssb">SSB/Interview</a></li>
+                                <li><a href="/afcat">AFCAT</a></li>
+                                <li><a href="/cds">CDS/OTA</a></li>
+                                <li><a href="/dps">Delhi Police</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <section class="section section-default border-0 my-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="750">
+                    <div class="container">
+
+                        <div class="row align-items-center">
+
+                            <div class="col-md-12">
+                                <div class="overflow-hidden mb-2">
+                                    <h2 class="text-color-dark font-weight-normal text-5 mb-0 pt-0 mt-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1200"><strong class="font-weight-bold">Other Information</strong></h2>
+                                </div>
+                                <p>
+                                    CPO Exam is highly competitive in nature and we provide a high-class all-embracing coaching, which enables the candidates to enhance their preparation and performance. We prepare you in such a manner that your groundwork is par excellence. Ample practice
+                                    is given in the field of English Language, General Intelligence & Reasoning and Quantitative Aptitude, as per the requirement of the CPO Exam. We facilitate the aspirants to comprehend the Exam pattern and inspire them
+                                    to delve deeply into the concepts. Apt training and guidance from the dedicated and experienced faculty and the bright vision of the Management goes a long way in shaping the aspirant’s career in the desired direction.
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+            <%- include('../includes/footer_bottom.ejs') %>
+    </div>
+
+    <!-- Vendor -->
+    <%- include('../includes/scripts.ejs') %>
+        <script>
+            $(document).ready(function() {
+                $('#navCourses').addClass(' active');
+            });
+        </script>
+
+</body>
+
+</html>
